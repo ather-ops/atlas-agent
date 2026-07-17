@@ -16,20 +16,27 @@
 
 ## Overview
 
-Atlas Agent is an autonomous AI assistant built with **smolagents** that can reason, plan, use tools, execute actions, and generate intelligent responses.
+Atlas Agent is an autonomous AI assistant built with **smolagents** that can reason, plan, choose tools, execute actions, and solve real-world tasks.
 
-Designed with a modular architecture, Atlas aims to become a complete AI productivity platform capable of automating real-world workflows.
+Rather than acting like a traditional chatbot, Atlas is being developed as an intelligent automation platform capable of interacting with APIs, external services, local tools, and future AI systems.
+
+The long-term vision is to build a production-ready AI agent that automates everyday workflows through modular tools and multi-step reasoning.
 
 ---
 
-## Features
+## Current Features
 
-- Autonomous Reasoning
-- Tool Calling
-- Code Execution
-- Modular Architecture
-- Extensible Tool System
-- Multi-Step Agent Workflow
+- Autonomous Agent Architecture
+- Tool Calling using smolagents
+- Hugging Face Inference Integration
+- Environment Variable Management
+- Modular Project Structure
+
+### Built-in Tools
+
+- Current Date & Time Tool
+- System Information Tool
+- Live Weather Tool (OpenWeather API)
 
 ---
 
@@ -37,8 +44,37 @@ Designed with a modular architecture, Atlas aims to become a complete AI product
 
 - Python
 - smolagents
-- Hugging Face
+- Hugging Face Inference API
 - Gradio
+- OpenWeather API
+- python-dotenv
+- Requests
+
+---
+
+## Development Progress
+
+### Day 1
+- Repository Setup
+- Project Structure
+- Virtual Environment
+- Hugging Face Authentication
+- smolagents Environment
+
+### Day 2
+- Built First Tool
+- Date & Time Tool
+- System Information Tool
+- Live Weather Tool
+- API Integration
+- Environment Configuration
+
+### Day 3
+- Git Security Fixes
+- Secret Management
+- Repository Cleanup
+- Stable Tool Architecture
+- Foundation Ready for Agent Integration
 
 ---
 
@@ -46,30 +82,41 @@ Designed with a modular architecture, Atlas aims to become a complete AI product
 
 - [x] Repository Setup
 - [x] Branding
-- [ ] Agent Environment
-- [ ] Email Automation
-- [ ] Calendar Integration
-- [ ] Browser Agent
+- [x] smolagents Setup
+- [x] Environment Configuration
+- [x] Date & Time Tool
+- [x] System Information Tool
+- [x] Weather Tool
+
+### Atlas v1
+
+- [ ] Real CodeAgent
+- [ ] Email Sender
+- [ ] Gmail Integration
+- [ ] Calendar Assistant
+- [ ] Browser Search
 - [ ] GitHub Assistant
 - [ ] Slack Integration
 - [ ] Notion Integration
-- [ ] Database Support
-- [ ] RAG Knowledge Base
-- [ ] Multi-Agent System
-- [ ] Atlas v1
+- [ ] File Management
+- [ ] RAG Memory
+- [ ] Multi-Agent Architecture
+- [ ] Gradio Interface
 
 ---
 
 ## Planned Integrations
 
-- Email
-- Calendar
-- Browser
+- Gmail
+- Google Calendar
 - GitHub
 - Slack
 - Notion
+- Browser Search
 - Weather
-- Databases
+- Local File System
+- SQL Databases
+- Vector Database
 - RAG
 - Custom APIs
 
@@ -78,25 +125,25 @@ Designed with a modular architecture, Atlas aims to become a complete AI product
 ## Architecture
 
 ```text
-          User
-            │
-            ▼
-      Atlas Agent
-            │
-            ▼
-     Think • Plan
-            │
-            ▼
-      Select Tool
-            │
-            ▼
-    Execute Action
-            │
-            ▼
-      Observation
-            │
-            ▼
-     Final Response
+                User
+                  │
+                  ▼
+           Atlas Agent
+                  │
+                  ▼
+          Think • Reason
+                  │
+                  ▼
+          Select Best Tool
+                  │
+                  ▼
+          Execute Action
+                  │
+                  ▼
+          Observe Result
+                  │
+                  ▼
+         Final Response
 ```
 
 ---
@@ -107,12 +154,19 @@ Designed with a modular architecture, Atlas aims to become a complete AI product
 atlas-agent/
 │
 ├── assets/
-├── app/
-├── tools/
-├── prompts/
-├── notebooks/
-├── docs/
+│   ├── logo.png
+│   └── cover.png
+│
+├── atlas/
+│   ├── agent.py
+│   ├── config.py
+│   ├── tools.py
+│   └── __init__.py
+│
+├── app.py
 ├── requirements.txt
+├── .gitignore
+├── .env
 └── README.md
 ```
 
@@ -120,4 +174,8 @@ atlas-agent/
 
 ## Vision
 
-Atlas Agent is being developed as a production-oriented AI agent platform focused on automation, intelligent tool orchestration, and scalable agent workflows. Each release expands its capabilities while maintaining a clean, modular, and extensible architecture.
+Atlas Agent is a long-term engineering project focused on building a production-grade autonomous AI assistant.
+
+Instead of demonstrating isolated AI features, Atlas is designed to combine reasoning, planning, tool usage, API integration, memory, retrieval, and multi-agent collaboration into one extensible platform.
+
+Every development day expands Atlas with real capabilities while keeping the architecture clean, modular, and scalable.
