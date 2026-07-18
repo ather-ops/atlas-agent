@@ -30,7 +30,7 @@ Machine          : {platform.machine()}
 Processor        : {platform.processor()}
 Python Version   : {platform.python_version()}
 """
-# Toll 3: Wheather tool
+# Tool 3: Wheather tool
 import requests
 from atlas.config import WEATHER_API_KEY
 
@@ -64,3 +64,34 @@ Condition   : {condition.title()}
 Humidity    : {humidity}%
 Wind Speed  : {wind} m/s
 """
+# Tool 4: Simple Calculator Tool
+@tool
+def simple_calculator(expression: str) -> str:
+    """
+    Evaluates a simple mathematical expression.
+    Args:
+        expression: A string containing a mathematical expression (e.g., "2 + 2").
+    Returns:
+        The result of the evaluated expression.
+    """
+    try:
+        result = eval(expression)
+        return f"The result of '{expression}' is: {result}"
+    except Exception as e:
+        return f"Error evaluating expression: {e}"
+    
+# Tool 5: File Reader Tool
+@tool
+def read_file(filename: str) -> str:
+    """
+    Reads the content of a file and returns it as a string.
+    Args:
+        filename: The name of the file to read.
+    Returns:
+        The content of the file as a string.
+    """
+    try:
+        with open(filename, "r") as f:
+            return f.read()
+    except Exception as e:
+        return f"Error reading file: {e}"
