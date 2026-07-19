@@ -95,3 +95,21 @@ def read_file(filename: str) -> str:
             return f.read()
     except Exception as e:
         return f"Error reading file: {e}"
+
+# Tool 6: File writer
+@tool
+def write_file(filename: str, content: str) -> str:
+    """
+    Writes content to a file.
+    Args:
+        filename: The name of the file to write to.
+        content: The content to write to the file.
+    Returns:
+        A success message or an error message.
+    """
+    try:
+        with open(filename, "w") as f:
+            f.write(content)
+        return f"Successfully wrote to {filename}"
+    except Exception as e:
+        return f"Error writing to file: {e}"

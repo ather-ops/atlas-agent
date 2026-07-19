@@ -14,3 +14,7 @@ print(simple_calculator("10 / 2 - 1"))
 
 from atlas.tools import read_file
 print(read_file("notes.txt"))
+
+from atlas.tools import write_file
+print(write_file("output.txt", "Hello, this is a test message."))
+
