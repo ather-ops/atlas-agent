@@ -16,31 +16,37 @@
 
 ## Overview
 
-Atlas Agent is an autonomous AI assistant built with **smolagents** that can reason, plan, choose tools, execute actions, and solve real-world tasks.
+Atlas Agent is an autonomous AI assistant built with **smolagents** that can reason, plan, select tools, execute actions, and solve real-world tasks.
 
-Instead of acting as a traditional chatbot, Atlas is being developed as an intelligent automation platform capable of interacting with APIs, local files, external services, and future AI systems.
+Unlike a traditional chatbot, Atlas is designed as a modular AI agent capable of interacting with APIs, local files, Python code, and external services. The project focuses on building a production-oriented autonomous assistant through clean architecture, reusable tools, and intelligent reasoning.
 
-The long-term goal is to build a production-ready AI agent that automates everyday workflows through modular tools, multi-step reasoning, and scalable architecture.
+The long-term vision is to transform Atlas into a complete AI productivity platform capable of automating real-world workflows.
 
 ---
 
 ## Current Features
 
-- Autonomous Agent Architecture
+- Autonomous AI Agent Architecture
 - Tool Calling with smolagents
 - Hugging Face Inference Integration
-- Environment Variable Management
 - Modular Python Architecture
+- Environment Variable Management
 - REST API Integration
 - Local File Operations
+- Live Internet Search
+- Python Code Execution
+- Production-Oriented Project Structure
 
 ### Built-in Tools
 
 - Current Date & Time
 - System Information
 - Live Weather (OpenWeather API)
-- Calculator
+- Enhanced Calculator
 - File Reader
+- File Writer
+- Web Search (Tavily API)
+- Python Code Executor
 
 ---
 
@@ -49,10 +55,13 @@ The long-term goal is to build a production-ready AI agent that automates everyd
 - Python
 - smolagents
 - Hugging Face Inference API
+- Tavily Search API
 - OpenWeather API
-- Gradio
 - Requests
 - python-dotenv
+- Gradio
+- Git
+- GitHub
 
 ---
 
@@ -64,10 +73,10 @@ The long-term goal is to build a production-ready AI agent that automates everyd
 - Project Structure
 - Virtual Environment
 - Hugging Face Configuration
-- smolagents Environment
+- smolagents Setup
 
 ### Day 2
-- Date & Time Tool
+- Current Date & Time Tool
 - System Information Tool
 - Live Weather Tool
 - OpenWeather API Integration
@@ -75,59 +84,73 @@ The long-term goal is to build a production-ready AI agent that automates everyd
 
 ### Day 3
 - Git Secret Protection
-- .env Security
+- API Key Security
+- .env Configuration
 - Repository Cleanup
 - Stable Project Architecture
-- API Configuration Improvements
 
 ### Day 4
-- Calculator Tool
+- Enhanced Calculator Tool
 - File Reader Tool
 - Local File Handling
 - Exception Handling
-- Tool Testing & Validation
-- Atlas now has **5 working tools**
+- Tool Validation
+
+### Day 5
+- File Writer Tool
+- Tavily Web Search Tool
+- Python Code Executor
+- Calculator Improvements
+- Atlas reached **8 working tools**
+
+### Day 6
+- Project Documentation Improvements
+- Security Policy Added
+- Repository Standardization
+- Architecture Refinements
+- Preparing CodeAgent Integration
+- Atlas Alpha Backend Completed
 
 ---
 
 ## Roadmap
 
-### Core Foundation
+### Foundation
 
 - [x] Repository Setup
 - [x] Branding
 - [x] Project Structure
+- [x] Virtual Environment
 - [x] smolagents Setup
 - [x] Hugging Face Integration
 - [x] Environment Configuration
 
-### Current Tools
+### Core Tools
 
 - [x] Date & Time Tool
 - [x] System Information Tool
 - [x] Weather Tool
 - [x] Calculator Tool
 - [x] File Reader Tool
-- [ ] File Writer Tool
-- [ ] Web Search Tool
-- [ ] Folder Reader Tool
+- [x] File Writer Tool
+- [x] Web Search Tool
+- [x] Python Code Executor
 
 ---
 
-## Atlas v1
+## Atlas Alpha v1
 
-- [ ] Connect all tools to CodeAgent
+- [ ] Connect Tools to CodeAgent
 - [ ] Autonomous Tool Selection
+- [ ] Multi-Step Reasoning
 - [ ] HTML Chat Interface
-- [ ] Email Automation
-- [ ] Browser Search
-- [ ] File Management
-- [ ] Stable Agent Workflow
-- [ ] Atlas v1 Release
+- [ ] Interactive Web Demo
+- [ ] UI Polish
+- [ ] Alpha Release
 
 ---
 
-## Future Integrations
+## Planned Integrations
 
 - Gmail
 - Google Calendar
@@ -135,41 +158,41 @@ The long-term goal is to build a production-ready AI agent that automates everyd
 - Slack
 - Notion
 - Browser Automation
-- Weather
-- Local File System
 - SQL Databases
 - Vector Database
 - RAG
-- Multi-Agent System
+- Memory
+- Multi-Agent Architecture
 
 ---
 
 ## Architecture
 
 ```text
-                 User
-                   │
-                   ▼
-             Atlas Agent
-                   │
-         ┌─────────┴─────────┐
-         │   Think & Reason  │
-         └─────────┬─────────┘
-                   │
-                   ▼
-            Select Best Tool
-                   │
-        ┌──────────┼──────────┐
-        │          │          │
-        ▼          ▼          ▼
-   Weather     Calculator   File Reader
-        │          │          │
-        └──────────┼──────────┘
-                   ▼
-             Observation
-                   │
-                   ▼
-            Final Response
+                    User
+                      │
+                      ▼
+                Atlas Agent
+                      │
+          ┌───────────┴───────────┐
+          │      Think & Plan     │
+          └───────────┬───────────┘
+                      │
+                      ▼
+               Select Best Tool
+                      │
+ ┌────────┬────────┬────────┬────────┐
+ ▼        ▼        ▼        ▼        ▼
+Weather Search Files Python Calculator
+                      │
+                      ▼
+               Execute Action
+                      │
+                      ▼
+                Observation
+                      │
+                      ▼
+               Final Response
 ```
 
 ---
@@ -192,9 +215,43 @@ atlas-agent/
 ├── app.py
 ├── requirements.txt
 ├── README.md
+├── SECURITY.md
 ├── .gitignore
 └── .env
 ```
+
+---
+
+## Current Status
+
+**Version**
+
+Atlas Alpha
+
+**Working Tools**
+
+- Current Date & Time
+- System Information
+- Live Weather
+- Enhanced Calculator
+- File Reader
+- File Writer
+- Web Search
+- Python Code Executor
+
+**Completed**
+
+- 8 Production-Ready Tools
+- API Integrations
+- Security Configuration
+- Modular Architecture
+- Project Documentation
+
+**Currently Building**
+
+- smolagents CodeAgent Integration
+- Autonomous Tool Selection
+- HTML Chat Interface
 
 ---
 
@@ -202,22 +259,26 @@ atlas-agent/
 
 Atlas Agent is a long-term engineering project focused on building a production-grade autonomous AI assistant.
 
-Rather than creating another chatbot, Atlas is designed to become an intelligent agent capable of reasoning, planning, selecting tools, interacting with APIs, managing files, retrieving knowledge, and automating real-world workflows.
+Rather than creating another chatbot, Atlas combines reasoning, planning, tool usage, API integrations, file operations, internet search, and Python execution into a single extensible platform.
 
-Each development day adds practical capabilities while maintaining a clean, modular, and scalable architecture.
+Future releases will introduce memory, retrieval-augmented generation (RAG), browser automation, email workflows, GitHub integration, and multi-agent collaboration while maintaining a clean, scalable, and production-ready architecture.
 
 ---
 
-## Current Status
+## Repository Standards
 
-**Version:** Pre-Alpha
+Atlas follows modern software engineering practices.
 
-**Working Tools:** 5
+- Modular Architecture
+- Environment Variable Management
+- GitHub Version Control
+- Security Policy
+- API Key Protection
+- Clean Documentation
+- Production-Oriented Structure
 
-- Date & Time
-- System Information
-- Weather
-- Calculator
-- File Reader
+---
 
-**Next Milestone:** Connect all tools to a real `smolagents` CodeAgent and launch the first interactive Atlas interface.
+## License
+
+This project is released under the MIT License.

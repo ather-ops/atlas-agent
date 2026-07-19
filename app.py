@@ -18,3 +18,8 @@ print(read_file("notes.txt"))
 from atlas.tools import write_file
 print(write_file("output.txt", "Hello, this is a test message."))
 
+from atlas.tools import web_search
+print(web_search("Latest AI news"))
+
+from atlas.tools import execute_code
+print(execute_code("print('Hello from executed code!')"))

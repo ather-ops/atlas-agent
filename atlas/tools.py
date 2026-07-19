@@ -65,20 +65,27 @@ Humidity    : {humidity}%
 Wind Speed  : {wind} m/s
 """
 # Tool 4: Simple Calculator Tool
+from smolagents import tool
+
 @tool
 def simple_calculator(expression: str) -> str:
     """
-    Evaluates a simple mathematical expression.
+    Calculates a basic mathematical expression.
     Args:
-        expression: A string containing a mathematical expression (e.g., "2 + 2").
+        expression: A mathematical expression such as
+        "2 + 3", "10 / 2", or "5 * 8".
     Returns:
-        The result of the evaluated expression.
+        The calculated result or an error message.
     """
+    allowed_chars = "0123456789+-*/(). %"
+    if any(char not in allowed_chars for char in expression):
+        return "Error: Only numbers and basic operators (+, -, *, /, %, ., parentheses) are allowed."
+
     try:
         result = eval(expression)
-        return f"The result of '{expression}' is: {result}"
+        return f"Result: {result}"
     except Exception as e:
-        return f"Error evaluating expression: {e}"
+        return f"Calculation Error: {e}"
     
 # Tool 5: File Reader Tool
 @tool
@@ -113,3 +120,63 @@ def write_file(filename: str, content: str) -> str:
         return f"Successfully wrote to {filename}"
     except Exception as e:
         return f"Error writing to file: {e}"
+
+# Tool 7: Web search tool
+from tavily import TavilyClient
+from atlas.config import TAVILY_API_KEY
+
+client = TavilyClient(api_key=TAVILY_API_KEY)
+@tool
+def web_search(query: str) -> str:
+    """
+    Searches the web and returns the most relevant results.
+    Args:
+        query: The search query.
+    Returns:
+        Search results including title, URL and summary.
+    """
+    try:
+        response = client.search(
+            query=query,
+            search_depth="basic",
+            max_results=5
+        )
+        results = response["results"]
+        if not results:
+            return "No search results found."
+        output = ""
+        for i, result in enumerate(results, start=1):
+            output += (
+                f"\nResult {i}\n"
+                f"Title   : {result['title']}\n"
+                f"URL     : {result['url']}\n"
+                f"Content : {result['content']}\n"
+                f"{'-'*50}\n"
+            )
+        return output
+    except Exception as e:
+        return f"Search Error: {e}"
+
+# Tool 8: Code Executor Tool
+import io
+import contextlib
+
+@tool
+def execute_code(code: str) -> str:
+    """
+    Executes Python code and returns the output.
+    Args:
+        code: Python code to execute.
+    Returns:
+        Output of the executed code.
+    """
+    try:
+        output = io.StringIO()
+        with contextlib.redirect_stdout(output):
+            exec(code)
+        result = output.getvalue()
+        if result.strip() == "":
+            return "Code executed successfully."
+        return result
+    except Exception as e:
+        return f"Execution Error: {e}"
