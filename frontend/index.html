@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atlas Agent</title>
+  <meta name="description" content="Autonomous AI assistant. Reason, plan, automate.">
+  <meta property="og:title" content="Atlas Agent">
+  <meta property="og:description" content="Autonomous AI assistant built with Python, FastAPI, Groq, smolagents.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <a href="#main" class="skip">Skip</a>
+
+  <!-- Ambient glows -->
+  <div class="glow1" aria-hidden="true"></div>
+  <div class="glow2" aria-hidden="true"></div>
+  <div class="glow3" aria-hidden="true"></div>
+
+  <nav>
+    <div class="inner">
+      <a href="/" class="logo" aria-label="Atlas Agent"><span class="logo-m">A</span> Atlas Agent</a>
+      <div class="links" id="links">
+        <a href="#features">Features</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#tools">Tools</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="https://github.com/ather-ops/atlas-agent" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+      </div>
+      <button class="menu" id="menu" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="inner">
+        <p class="m tag">v0.1.0 — open source</p>
+        <h1>Build.<br><span class="acc">Reason.</span><br>Automate.</h1>
+        <p class="sub">Autonomous AI assistant. Reasoning, tool selection, execution — in a loop.</p>
+        <div class="btns">
+          <a href="#chat" class="btn">Try it</a>
+          <a href="https://github.com/ather-ops/atlas-agent" target="_blank" rel="noopener noreferrer" class="btn o">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </a>
+        </div>
+        <div class="chip m">
+          <span>$ pip install atlas-agent</span>
+          <button class="cp" aria-label="Copy" data-cp="pip install atlas-agent">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chat -->
+    <section class="sect" id="chat">
+      <div class="inner">
+        <div class="terminal rv">
+          <div class="term-bar">
+            <span class="dots"><i></i><i></i><i></i></span>
+            <span class="m">atlas-agent</span>
+          </div>
+          <div class="term-body" id="term-body">
+            <div id="msgs"></div>
+          </div>
+          <form class="term-input" id="form" autocomplete="off">
+            <span class="prompt m">&gt;</span>
+            <input type="text" id="inp" class="m" placeholder="type a message..." aria-label="Message">
+            <button type="submit" class="send" aria-label="Send">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="sect" id="features">
+      <div class="inner">
+        <p class="m label rv">capabilities</p>
+        <h2 class="rv">What It Does</h2>
+        <div class="grid">
+          <div class="card rv"><span class="m t">reason</span><h3>Autonomous Reasoning</h3><p>Analyzes context, selects approaches independently.</p></div>
+          <div class="card rv"><span class="m t">plan</span><h3>Multi-Step Planning</h3><p>Complex tasks broken into sequential steps.</p></div>
+          <div class="card rv"><span class="m t">tool</span><h3>Tool Calling</h3><p>Dynamic tool selection per sub-task.</p></div>
+          <div class="card rv"><span class="m t">search</span><h3>Web Search</h3><p>Real-time internet search via Tavily.</p></div>
+          <div class="card rv"><span class="m t">wx</span><h3>Weather</h3><p>Live weather data via OpenWeather.</p></div>
+          <div class="card rv"><span class="m t">fread</span><h3>File Reader</h3><p>Read and process file contents.</p></div>
+          <div class="card rv"><span class="m t">fwrite</span><h3>File Writer</h3><p>Create and write output files.</p></div>
+          <div class="card rv"><span class="m t">exec</span><h3>Code Execution</h3><p>Run Python, return results in real time.</p></div>
+          <div class="card rv"><span class="m t">api</span><h3>FastAPI Backend</h3><p>Async API for fast request handling.</p></div>
+          <div class="card rv"><span class="m t">llm</span><h3>Groq LLM</h3><p>Ultra-fast inference via Groq LPU.</p></div>
+          <div class="card rv"><span class="m t">mod</span><h3>Modular</h3><p>Plugin system, add tools easily.</p></div>
+          <div class="card rv"><span class="m t">mem</span><h3>Memory</h3><p>Persistent context — coming soon.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Workflow -->
+    <section class="sect" id="workflow">
+      <div class="inner">
+        <p class="m label rv">workflow</p>
+        <h2 class="rv">How It Thinks</h2>
+        <div class="flow">
+          <div class="step rv"><span class="m n">01</span><h3>User</h3><p>Natural language input.</p></div>
+          <div class="arrow m rv">&darr;</div>
+          <div class="step rv"><span class="m n">02</span><h3>Atlas Agent</h3><p>Parse and prepare.</p></div>
+          <div class="arrow m rv">&darr;</div>
+          <div class="step rv"><span class="m n">03</span><h3>Reason</h3><p>Analyze, determine approach.</p></div>
+          <div class="arrow m rv">&darr;</div>
+          <div class="step rv"><span class="m n">04</span><h3>Select Tool</h3><p>Choose from toolkit.</p></div>
+          <div class="arrow m rv">&darr;</div>
+          <div class="step rv"><span class="m n">05</span><h3>Execute</h3><p>Run tool with params.</p></div>
+          <div class="arrow m rv">&darr;</div>
+          <div class="step rv"><span class="m n">06</span><h3>Observe</h3><p>Evaluate, decide next.</p></div>
+          <div class="arrow m rv">&darr;</div>
+          <div class="step rv"><span class="m n">07</span><h3>Answer</h3><p>Return result.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tools -->
+    <section class="sect" id="tools">
+      <div class="inner">
+        <p class="m label rv">toolkit</p>
+        <h2 class="rv">Current Tools</h2>
+        <div class="grid">
+          <div class="tool rv"><code class="m">atlas.datetime()</code></div>
+          <div class="tool rv"><code class="m">atlas.sys_info()</code></div>
+          <div class="tool rv"><code class="m">atlas.weather("city")</code></div>
+          <div class="tool rv"><code class="m">atlas.calculate("expr")</code></div>
+          <div class="tool rv"><code class="m">atlas.file_read("path")</code></div>
+          <div class="tool rv"><code class="m">atlas.file_write("path")</code></div>
+          <div class="tool rv"><code class="m">atlas.web_search("q")</code></div>
+          <div class="tool rv"><code class="m">atlas.python_exec(code)</code></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Roadmap -->
+    <section class="sect" id="roadmap">
+      <div class="inner">
+        <p class="m label rv">roadmap</p>
+        <h2 class="rv">Coming Next</h2>
+        <div class="grid rm">
+          <div class="ri rv"><span class="m badge">soon</span><span>Gmail</span></div>
+          <div class="ri rv"><span class="m badge">soon</span><span>Google Calendar</span></div>
+          <div class="ri rv"><span class="m badge">soon</span><span>GitHub Assistant</span></div>
+          <div class="ri rv"><span class="m badge">soon</span><span>Browser Automation</span></div>
+          <div class="ri rv"><span class="m badge">soon</span><span>SQL Database</span></div>
+          <div class="ri rv"><span class="m badge">soon</span><span>RAG Knowledge Base</span></div>
+          <div class="ri rv"><span class="m badge">soon</span><span>Long-Term Memory</span></div>
+          <div class="ri rv"><span class="m badge">soon</span><span>Multi-Agent</span></div>
+          <div class="ri rv"><span class="m badge">soon</span><span>Voice Interface</span></div>
+          <div class="ri rv"><span class="m badge">soon</span><span>Local LLM</span></div>
+          <div class="ri rv"><span class="m badge">soon</span><span>Auth</span></div>
+          <div class="ri rv"><span class="m badge">soon</span><span>Team Workspaces</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stack -->
+    <section class="sect" id="stack">
+      <div class="inner">
+        <p class="m label rv">stack</p>
+        <h2 class="rv">Built With</h2>
+        <div class="stack rv">
+          <span class="m sb">Python</span>
+          <span class="m sb">FastAPI</span>
+          <span class="m sb">Groq</span>
+          <span class="m sb">smolagents</span>
+          <span class="m sb">Gradio</span>
+          <span class="m sb">HTML</span>
+          <span class="m sb">CSS</span>
+          <span class="m sb">JavaScript</span>
+          <span class="m sb">OpenWeather</span>
+          <span class="m sb">Tavily</span>
+          <span class="m sb">GitHub</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Open Source -->
+    <section class="sect" id="oss">
+      <div class="inner">
+        <p class="m label rv">open source</p>
+        <h2 class="rv">Built in the Open</h2>
+        <div class="repo rv" id="repo">
+          <div class="repo-h">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            <span class="m">ather-ops/atlas-agent</span>
+          </div>
+          <div class="stats">
+            <div><span class="m sl">stars</span><span class="m sv" id="gh-stars">—</span></div>
+            <div><span class="m sl">commits</span><span class="m sv" id="gh-commits">—</span></div>
+            <div><span class="m sl">release</span><span class="m sv" id="gh-release">—</span></div>
+            <div><span class="m sl">lang</span><span class="m sv" id="gh-lang">—</span></div>
+          </div>
+          <a href="https://github.com/ather-ops/atlas-agent" target="_blank" rel="noopener noreferrer" class="btn w">View on GitHub</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="inner f">
+      <div>
+        <p class="fn">Atlas Agent</p>
+        <p class="fs">Autonomous AI Assistant</p>
+        <p class="fs">Python · FastAPI · Groq · smolagents</p>
+      </div>
+      <div class="fl">
+        <a href="https://github.com/ather-ops/atlas-agent" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://github.com/ather-ops/atlas-agent#readme" target="_blank" rel="noopener noreferrer">Docs</a>
+        <a href="https://github.com/ather-ops/atlas-agent/security" target="_blank" rel="noopener noreferrer">Security</a>
+        <a href="https://github.com/ather-ops/atlas-agent/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">License</a>
+      </div>
+      <p class="m fst"><i></i> operational · <span id="yr"></span></p>
+    </div>
+  </footer>
+
+<script src="/static/script.js"></script>
+<script src="/static/chat.js"></script>
+</body>
+</html>
+
