@@ -1,6 +1,10 @@
-from smolagents import CodeAgent
-from atlas.config import model
-
+from smolagents import CodeAgent, OpenAIServerModel
+from atlas.config import GROQ_TOKEN
+model = OpenAIServerModel(
+    model_id="llama-3.3-70b-versatile",
+    api_key=GROQ_TOKEN,
+    api_base="https://api.groq.com/openai/v1",
+)
 from atlas.tools import (
     get_current_datetime,
     get_system_info,
