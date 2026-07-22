@@ -2,9 +2,13 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
+from dotenv import load_dotenv
 import os
 
 from schemas import ChatRequest, ChatResponse
+
+# Load environment variables
+load_dotenv()
 
 # Try to import agent, but use mock if it fails
 try:
@@ -35,11 +39,19 @@ app.add_middleware(
 )
 
 # Mount static files from frontend directory
-app.mount("/static", StaticFiles(directory="frontend"), name="static")
+if os.path.exists("frontend"):
+    app.mount("/static", StaticFiles(directory="frontend"), name="static")
+else:
+    print("Warning: frontend directory not found")
 
 @app.get("/")
 def home():
-    return FileResponse("frontend/index.html")
+    if os.path.exists("frontend/index.html"):
+        return FileResponse("frontend/index.html")
+    elif os.path.exists("index.html"):
+        return FileResponse("index.html")
+    else:
+        return {"error": "index.html not found"}
 
 @app.post("/chat")
 async def chat(request: ChatRequest):
@@ -50,12 +62,16 @@ async def chat(request: ChatRequest):
         return ChatResponse(response=str(answer))
     except Exception as e:
         error_msg = f"Error: {str(e)}"
-        print(f"❌ {error_msg}")
+        print(f"Error: {error_msg}")
         return ChatResponse(response=error_msg)
 
 @app.get("/health")
 def health():
-    return {"status": "healthy"}
+    return {"status": "healthy", "agent_loaded": agent is not None}
+
+@app.get("/test")
+def test():
+    return {"message": "Backend is working!"}
 
 if __name__ == "__main__":
     import uvicorn
