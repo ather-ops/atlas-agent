@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ather-ops/atlas-agent/main/assets/logo.png" alt="Atlas Agent Logo" width="120">
+  <img src="https://github.com/ather-ops/atlas-agent/blob/main/assets/Logo.png" alt="Atlas Agent Logo" width="120">
 </p>
 
 <h1 align="center">Atlas Agent</h1>
@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ather-ops/atlas-agent/main/assets/cover.png" alt="Atlas Agent Cover">
+  <img src="https://github.com/ather-ops" alt="Atlas Agent Cover">
 </p>
 
 ---
