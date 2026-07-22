@@ -1,6 +1,6 @@
 /* ==========================================================
    Atlas Agent - chat.js
-   Chat functionality only
+   Chat functionality with enhanced animations
 ========================================================== */
 
 (function () {
@@ -20,17 +20,23 @@
 
     console.log('Chat initialized');
 
+    // Use relative path for both local and production
+    const API_URL = '/chat';
+
     /**
-     * Scroll to bottom of chat
+     * Scroll to bottom of chat with smooth animation
      */
     function scrollBottom() {
         if (body) {
-            body.scrollTop = body.scrollHeight;
+            body.scrollTo({
+                top: body.scrollHeight,
+                behavior: 'smooth'
+            });
         }
     }
 
     /**
-     * Add a message to the chat
+     * Add a message to the chat with animation
      */
     function addMessage(sender, text) {
         const wrapper = document.createElement("div");
@@ -47,22 +53,42 @@
         wrapper.appendChild(label);
         wrapper.appendChild(message);
         messages.appendChild(wrapper);
+        
+        // Trigger animation after a small delay
+        requestAnimationFrame(() => {
+            wrapper.classList.add("show");
+        });
+        
         scrollBottom();
     }
 
     /**
-     * Show thinking indicator
+     * Show thinking indicator with enhanced three dots animation
      */
     function showThinking() {
         removeThinking();
         const div = document.createElement("div");
         div.id = "thinking";
         div.className = "msg";
+        
         div.innerHTML = `
             <div class="msg-l at">atlas</div>
-            <div class="msg-t">Thinking...</div>
+            <div class="msg-t thinking-wrapper">
+                <span class="thinking-text">Thinking</span>
+                <span class="typing-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </div>
         `;
         messages.appendChild(div);
+        
+        // Trigger animation after a small delay
+        requestAnimationFrame(() => {
+            div.classList.add("show");
+        });
+        
         scrollBottom();
     }
 
@@ -72,7 +98,10 @@
     function removeThinking() {
         const thinking = document.getElementById("thinking");
         if (thinking) {
-            thinking.remove();
+            thinking.classList.remove("show");
+            setTimeout(() => {
+                thinking.remove();
+            }, 300);
         }
     }
 
@@ -93,7 +122,7 @@
         showThinking();
 
         try {
-            const response = await fetch("/chat", {
+            const response = await fetch(API_URL, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -108,17 +137,34 @@
             }
 
             const data = await response.json();
-            console.log(` Response data:`, data);
+            console.log(`Response data:`, data);
             
             removeThinking();
-            addMessage("atlas", data.response || "No response from server");
+            
+            // Extract response properly
+            let responseText = "No response from server";
+            if (data) {
+                if (data.response) {
+                    responseText = data.response;
+                } else if (data.answer) {
+                    responseText = data.answer;
+                } else if (data.result) {
+                    responseText = data.result;
+                } else if (typeof data === 'string') {
+                    responseText = data;
+                } else {
+                    responseText = JSON.stringify(data, null, 2);
+                }
+            }
+            
+            addMessage("atlas", responseText);
 
         } catch (error) {
             console.error("Chat error:", error);
             removeThinking();
             addMessage(
                 "atlas",
-                `Error: ${error.message}. Make sure the backend is running on http://127.0.0.1:8000`
+                `Error: ${error.message}`
             );
         }
     });

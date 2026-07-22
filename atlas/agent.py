@@ -1,7 +1,7 @@
 from smolagents import CodeAgent, OpenAIServerModel
 from atlas.config import GROQ_TOKEN
 model = OpenAIServerModel(
-    model_id="llama-3.3-70b-versatile",
+    model_id="groq/llama-3.1-8b-instant",
     api_key=GROQ_TOKEN,
     api_base="https://api.groq.com/openai/v1",
 )
