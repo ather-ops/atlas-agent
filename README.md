@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img src="https://github.com/ather-ops" alt="Atlas Agent Cover">
+  <img src="https://github.com/ather-ops/atlas-agent/blob/main/assets/Cover.png" alt="Atlas Agent Cover">
 </p>
 
 ---
