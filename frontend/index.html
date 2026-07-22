@@ -1,35 +1,297 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Atlas Agent</title>
-  <meta name="description" content="Autonomous AI assistant. Reason, plan, automate.">
-  <meta property="og:title" content="Atlas Agent">
-  <meta property="og:description" content="Autonomous AI assistant built with Python, FastAPI, Groq, smolagents.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atlas Agent · autonomous AI</title>
+  <meta name="description" content="Autonomous AI assistant. Reason, plan, automate." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #05040a;
+      color: #5750be;
+      font-family: 'JetBrains Mono', monospace;
+      line-height:1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color:inherit; text-decoration:none; cursor:pointer; }
+    .inner { max-width:1200px; margin:0 auto; padding:0 1.5rem; }
+    .m { font-family: 'JetBrains Mono', monospace; }
+    .rv { opacity:0; transform:translateY(1.2rem); animation:rev 0.7s cubic-bezier(0.16,1,0.3,1) forwards; }
+    @keyframes rev { to { opacity:1; transform:translateY(0); } }
+
+    .skip { position:absolute; top:-200%; left:1rem; background:#1a1a2e; padding:0.5rem 1rem; z-index:100; border:1px solid #4a6cf7; }
+    .skip:focus { top:1rem; }
+
+    nav {
+      position:sticky; top:0; z-index:50; backdrop-filter:blur(20px) saturate(1.4);
+      background:rgba(0,0,0,0.85); border-bottom:1px solid rgba(74,108,247,0.15);
+      padding:0.6rem 0;
+    }
+    nav .inner {
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .logo {
+      font-weight:700; font-size:1.3rem; letter-spacing:-0.02em;
+      display:flex; align-items:center; gap:0.6rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: #ffffff;
+    }
+    .logo img {
+      height: 36px;
+      width: auto;
+      display: block;
+      border-radius: 4px;
+      filter: drop-shadow(0 0 8px rgba(74,108,247,0.3));
+    }
+    .logo-m {
+      font-family:'JetBrains Mono',monospace; font-weight:700;
+      color: #ffffff;
+      font-size:1.6rem; line-height:1;
+    }
+    .links {
+      display:flex; align-items:center; gap:2rem;
+    }
+    .links a {
+      font-size:0.9rem; font-weight:500; color:#8892b0; transition:color 0.2s;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .links a:hover { color:#4a6cf7; }
+    .menu { display:none; background:none; border:none; flex-direction:column; gap:4px; cursor:pointer; }
+    .menu span { width:20px; height:2px; background:#e8edf2; }
+
+    .hero {
+      padding:5rem 0 4rem; position:relative; z-index:2;
+      background: 
+        linear-gradient(rgba(74,108,247,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(74,108,247,0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+      background-position: center center;
+      overflow: hidden;
+    }
+    .hero .inner { display:flex; flex-direction:column; align-items:center; text-align:center; position:relative; z-index:1; }
+    .tag {
+      font-size:0.8rem; text-transform:uppercase; letter-spacing:0.08em;
+      background:rgba(74,108,247,0.08); padding:0.3rem 1rem;
+      border:1px solid rgba(74,108,247,0.2); color:#7a8cf7; margin-bottom:1.8rem;
+      display:inline-block;
+      font-style: italic;
+    }
+    .hero h1 {
+      font-size:clamp(3rem, 12vw, 5.6rem);
+      font-weight:800; line-height:1.05; letter-spacing:-0.04em;
+      color: #e8edf2;
+      font-family: 'JetBrains Mono', monospace;
+      font-style: italic;
+    }
+    .hero h1 .acc {
+      font-family:'JetBrains Mono',monospace;
+      font-weight:700; font-style:italic;
+      color: #4a6cf7;
+      display:inline-block;
+      border-bottom:3px solid rgba(74,108,247,0.4);
+      padding-bottom:0.05em;
+    }
+    .hero .sub {
+      font-size:1.2rem; max-width:560px; color:#8892b0; margin:1.2rem auto 2rem;
+      font-weight:400; letter-spacing:-0.01em;
+      font-family: 'JetBrains Mono', monospace;
+      font-style: italic;
+    }
+    .hero .sub span {
+      color: #4a6cf7;
+      font-style: italic;
+      font-weight: 500;
+    }
+    .btns { display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; margin-bottom:2.5rem; }
+    .btn {
+      background:#4a6cf7; color:#000; padding:0.65rem 1.8rem;
+      font-weight:600; font-size:0.95rem; transition:all 0.25s; border:1px solid transparent;
+      display:inline-flex; align-items:center; gap:0.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-style: italic;
+      cursor:pointer;
+    }
+    .btn:hover { background:#6a8af7; transform:scale(1.02); }
+    .btn.o {
+      background:transparent; color:#e8edf2; border-color:rgba(74,108,247,0.3);
+    }
+    .btn.o:hover { background:rgba(74,108,247,0.1); border-color:#4a6cf7; }
+    .btn.w { background:transparent; border-color:#4a6cf7; color:#7a8cf7; }
+    .btn.w:hover { background:#4a6cf7; color:#000; }
+    .chip {
+      display:inline-flex; align-items:center; gap:0.8rem;
+      background:rgba(74,108,247,0.06); border:1px solid rgba(74,108,247,0.15);
+      padding:0.4rem 1rem 0.4rem 1.6rem; font-size:0.9rem;
+      backdrop-filter:blur(8px);
+      font-family: 'JetBrains Mono', monospace;
+      font-style: italic;
+    }
+    .chip span { color:#8892b0; }
+    .cp { background:none; border:none; color:#64748b; cursor:pointer; display:flex; transition:color 0.2s; }
+    .cp:hover { color:#4a6cf7; }
+
+    .sect { padding:4rem 0; border-top:1px solid rgba(74,108,247,0.08); }
+    .label { font-size:0.75rem; text-transform:uppercase; letter-spacing:0.1em; color:#64748b; margin-bottom:0.4rem; font-style: italic; }
+    .sect h2 { font-size:2.2rem; font-weight:700; letter-spacing:-0.02em; margin-bottom:2rem; font-family: 'JetBrains Mono', monospace; font-style: italic; color: #e8edf2; }
+
+    .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:1.2rem; }
+    .card {
+      background:rgba(74,108,247,0.03); border:1px solid rgba(74,108,247,0.08);
+      padding:1.5rem 1.2rem;
+      transition:background 0.2s, border-color 0.2s;
+    }
+    .card:hover { background:rgba(74,108,247,0.06); border-color:rgba(74,108,247,0.2); }
+    .card .t { font-size:0.7rem; text-transform:uppercase; color:#4a6cf7; letter-spacing:0.04em; font-family: 'JetBrains Mono', monospace; font-style: italic; }
+    .card h3 { font-size:1.1rem; margin:0.5rem 0 0.2rem; font-weight:600; font-family: 'JetBrains Mono', monospace; font-style: italic; }
+    .card p { font-size:0.9rem; color:#8892b0; font-family: 'JetBrains Mono', monospace; font-style: italic; }
+
+    .flow { display:flex; flex-direction:column; align-items:center; gap:0.2rem; max-width:360px; margin:0 auto; }
+    .step {
+      background:rgba(74,108,247,0.03); border:1px solid rgba(74,108,247,0.08);
+      padding:1rem 2rem; width:100%; text-align:center;
+    }
+    .step .n { font-size:0.75rem; color:#4a6cf7; display:block; font-family: 'JetBrains Mono', monospace; font-style: italic; }
+    .step h3 { font-size:1.1rem; font-weight:600; font-family: 'JetBrains Mono', monospace; font-style: italic; }
+    .step p { font-size:0.85rem; color:#8892b0; font-family: 'JetBrains Mono', monospace; font-style: italic; }
+    .arrow { font-size:1.4rem; color:#334155; font-family: 'JetBrains Mono', monospace; }
+
+    .tool {
+      background:rgba(74,108,247,0.03); border:1px solid rgba(74,108,247,0.08);
+      padding:0.75rem 1rem; text-align:center;
+      font-size:0.9rem; transition:background 0.2s;
+      font-family: 'JetBrains Mono', monospace;
+      font-style: italic;
+    }
+    .tool:hover { background:rgba(74,108,247,0.06); border-color:rgba(74,108,247,0.2); }
+    .tool code { color:#8892b0; }
+
+    .rm { grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); }
+    .ri {
+      display:flex; align-items:center; gap:0.6rem;
+      background:rgba(74,108,247,0.03); border:1px solid rgba(74,108,247,0.06);
+      padding:0.4rem 1rem 0.4rem 0.6rem;
+      font-size:0.9rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-style: italic;
+    }
+    .badge {
+      background:#1a1a2e; color:#7a8cf7; font-size:0.6rem; text-transform:uppercase;
+      padding:0.1rem 0.6rem; letter-spacing:0.04em;
+      border:1px solid rgba(74,108,247,0.15);
+    }
+
+    .stack { display:flex; flex-wrap:wrap; gap:0.6rem; }
+    .sb {
+      background:rgba(74,108,247,0.04); border:1px solid rgba(74,108,247,0.08);
+      padding:0.2rem 1rem; font-size:0.8rem;
+      color:#8892b0;
+      font-family: 'JetBrains Mono', monospace;
+      font-style: italic;
+    }
+
+    .repo {
+      background:rgba(74,108,247,0.03); border:1px solid rgba(74,108,247,0.08);
+      padding:1.8rem; max-width:480px;
+    }
+    .repo-h { display:flex; align-items:center; gap:0.6rem; margin-bottom:1.2rem; color: #7a8cf7; }
+    .stats { display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-bottom:1.5rem; }
+    .sl { color:#64748b; font-size:0.7rem; text-transform:uppercase; letter-spacing:0.04em; display:block; font-family: 'JetBrains Mono', monospace; font-style: italic; }
+    .sv { font-weight:500; font-family: 'JetBrains Mono', monospace; font-style: italic; color: #e8edf2; }
+
+    .terminal {
+      background:#0a0a0f; border:1px solid rgba(74,108,247,0.12);
+      overflow:hidden; max-width:640px; margin:0 auto;
+    }
+    .term-bar {
+      display:flex; align-items:center; gap:0.8rem; padding:0.6rem 1rem;
+      background:rgba(74,108,247,0.04); border-bottom:1px solid rgba(74,108,247,0.08);
+      font-style: italic;
+    }
+    .dots i { display:inline-block; width:10px; height:10px; margin-right:4px; }
+    .dots i:nth-child(1){ background:#4a6cf7; }
+    .dots i:nth-child(2){ background:#6a8af7; }
+    .dots i:nth-child(3){ background:#7a8cf7; }
+    .term-body { padding:1rem; min-height:150px; max-height:220px; overflow-y:auto; }
+    .term-input {
+      display:flex; align-items:center; gap:0.4rem; border-top:1px solid rgba(74,108,247,0.08);
+      padding:0.4rem 1rem;
+    }
+    .prompt { color:#4a6cf7; font-weight:600; font-family: 'JetBrains Mono', monospace; font-style: italic; }
+    .term-input input {
+      background:transparent; border:none; color:#e8edf2; flex:1; outline:none;
+      font-size:0.9rem; padding:0.4rem 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-style: italic;
+    }
+    .term-input input::placeholder { color:#334155; font-style: italic; }
+    .send { background:none; border:none; color:#64748b; cursor:pointer; padding:0.2rem; transition:color 0.2s; }
+    .send:hover { color:#4a6cf7; }
+
+    footer { border-top:1px solid rgba(74,108,247,0.08); padding:2.5rem 0; }
+    .f { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1.5rem; }
+    .fn { font-weight:700; font-size:1.1rem; font-family: 'JetBrains Mono', monospace; font-style: italic; color: #7a8cf7; }
+    .fs { font-size:0.85rem; color:#64748b; font-family: 'JetBrains Mono', monospace; font-style: italic; }
+    .fl { display:flex; gap:1.5rem; align-items:center; }
+    .fl a { font-size:0.9rem; color:#8892b0; transition:color 0.2s; font-family: 'JetBrains Mono', monospace; font-style: italic; }
+    .fl a:hover { color:#4a6cf7; }
+    .fst { font-size:0.75rem; color:#334155; display:flex; align-items:center; gap:0.3rem; font-family: 'JetBrains Mono', monospace; font-style: italic; }
+
+    /* Chat message styles */
+    .msg { margin-bottom:0.8rem; display:flex; align-items:flex-start; gap:0.8rem; }
+    .msg-l { 
+      font-weight:600; 
+      color:#4a6cf7; 
+      font-family:'JetBrains Mono',monospace; 
+      font-style: italic;
+      min-width:50px;
+      flex-shrink:0;
+    }
+    .msg-l.at { color:#7a8cf7; }
+    .msg-t { 
+      color:#c8d0e0; 
+      word-break:break-word; 
+      font-family:'JetBrains Mono',monospace; 
+      font-style: italic;
+      padding:0.2rem 0;
+    }
+
+    @media (max-width:768px) {
+      .links { display:none; }
+      .menu { display:flex; }
+      .hero h1 { font-size:clamp(2.6rem,10vw,3.6rem); }
+      .grid { grid-template-columns:1fr 1fr; }
+      .rm { grid-template-columns:1fr 1fr; }
+      .stats { grid-template-columns:1fr 1fr; }
+    }
+    @media (max-width:480px) {
+      .grid { grid-template-columns:1fr; }
+      .rm { grid-template-columns:1fr; }
+      .hero h1 .acc { border-bottom-width:2px; }
+    }
+  </style>
 </head>
 <body>
-  <a href="#main" class="skip">Skip</a>
-
-  <!-- Ambient glows -->
-  <div class="glow1" aria-hidden="true"></div>
-  <div class="glow2" aria-hidden="true"></div>
-  <div class="glow3" aria-hidden="true"></div>
+  <a href="#main" class="skip">Skip to content</a>
 
   <nav>
     <div class="inner">
-      <a href="/" class="logo" aria-label="Atlas Agent"><span class="logo-m">A</span> Atlas Agent</a>
+      <a href="https://github.com/ather-ops/atlas-agent" target="_blank" class="logo" aria-label="Atlas Agent GitHub">
+        <img src="https://raw.githubusercontent.com/ather-ops/atlas-agent/main/assets/logo.png" alt="Atlas Agent logo" onerror="this.style.display='none'" />
+        <span class="logo-m">Atlas Agent</span>
+      </a>
       <div class="links" id="links">
         <a href="#features">Features</a>
         <a href="#workflow">Workflow</a>
         <a href="#tools">Tools</a>
         <a href="#roadmap">Roadmap</a>
         <a href="https://github.com/ather-ops/atlas-agent" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#4a6cf7"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
         </a>
       </div>
       <button class="menu" id="menu" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
@@ -38,12 +300,17 @@
 
   <main id="main">
 
-    <!-- Hero -->
     <section class="hero">
       <div class="inner">
-        <p class="m tag">v0.1.0 — open source</p>
-        <h1>Build.<br><span class="acc">Reason.</span><br>Automate.</h1>
-        <p class="sub">Autonomous AI assistant. Reasoning, tool selection, execution — in a loop.</p>
+        <p class="m tag">v0.1.0 · open source</p>
+        <h1>
+          Build.<br />
+          <span class="acc">Reason.</span><br />
+          Automate.
+        </h1>
+        <p class="sub">
+          <span>autonomous</span> AI assistant · reasoning, tool selection, execution — in a loop.
+        </p>
         <div class="btns">
           <a href="#chat" class="btn">Try it</a>
           <a href="https://github.com/ather-ops/atlas-agent" target="_blank" rel="noopener noreferrer" class="btn o">
@@ -60,7 +327,6 @@
       </div>
     </section>
 
-    <!-- Chat -->
     <section class="sect" id="chat">
       <div class="inner">
         <div class="terminal rv">
@@ -73,7 +339,7 @@
           </div>
           <form class="term-input" id="form" autocomplete="off">
             <span class="prompt m">&gt;</span>
-            <input type="text" id="inp" class="m" placeholder="type a message..." aria-label="Message">
+            <input type="text" id="inp" class="m" placeholder="type a message..." aria-label="Message" />
             <button type="submit" class="send" aria-label="Send">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
             </button>
@@ -82,7 +348,6 @@
       </div>
     </section>
 
-    <!-- Features -->
     <section class="sect" id="features">
       <div class="inner">
         <p class="m label rv">capabilities</p>
@@ -104,7 +369,6 @@
       </div>
     </section>
 
-    <!-- Workflow -->
     <section class="sect" id="workflow">
       <div class="inner">
         <p class="m label rv">workflow</p>
@@ -127,7 +391,6 @@
       </div>
     </section>
 
-    <!-- Tools -->
     <section class="sect" id="tools">
       <div class="inner">
         <p class="m label rv">toolkit</p>
@@ -145,7 +408,6 @@
       </div>
     </section>
 
-    <!-- Roadmap -->
     <section class="sect" id="roadmap">
       <div class="inner">
         <p class="m label rv">roadmap</p>
@@ -167,42 +429,33 @@
       </div>
     </section>
 
-    <!-- Stack -->
     <section class="sect" id="stack">
       <div class="inner">
         <p class="m label rv">stack</p>
         <h2 class="rv">Built With</h2>
         <div class="stack rv">
-          <span class="m sb">Python</span>
-          <span class="m sb">FastAPI</span>
-          <span class="m sb">Groq</span>
-          <span class="m sb">smolagents</span>
-          <span class="m sb">Gradio</span>
-          <span class="m sb">HTML</span>
-          <span class="m sb">CSS</span>
-          <span class="m sb">JavaScript</span>
-          <span class="m sb">OpenWeather</span>
-          <span class="m sb">Tavily</span>
-          <span class="m sb">GitHub</span>
+          <span class="m sb">Python</span><span class="m sb">FastAPI</span><span class="m sb">Groq</span>
+          <span class="m sb">smolagents</span><span class="m sb">Gradio</span><span class="m sb">HTML</span>
+          <span class="m sb">CSS</span><span class="m sb">JavaScript</span><span class="m sb">OpenWeather</span>
+          <span class="m sb">Tavily</span><span class="m sb">GitHub</span>
         </div>
       </div>
     </section>
 
-    <!-- Open Source -->
     <section class="sect" id="oss">
       <div class="inner">
         <p class="m label rv">open source</p>
         <h2 class="rv">Built in the Open</h2>
         <div class="repo rv" id="repo">
           <div class="repo-h">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#4a6cf7"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
             <span class="m">ather-ops/atlas-agent</span>
           </div>
           <div class="stats">
-            <div><span class="m sl">stars</span><span class="m sv" id="gh-stars">—</span></div>
-            <div><span class="m sl">commits</span><span class="m sv" id="gh-commits">—</span></div>
-            <div><span class="m sl">release</span><span class="m sv" id="gh-release">—</span></div>
-            <div><span class="m sl">lang</span><span class="m sv" id="gh-lang">—</span></div>
+            <div><span class="m sl">stars</span><span class="m sv" id="gh-stars">2+</span></div>
+            <div><span class="m sl">commits</span><span class="m sv" id="gh-commits">30+</span></div>
+            <div><span class="m sl">release</span><span class="m sv" id="gh-release">v0.1.0</span></div>
+            <div><span class="m sl">lang</span><span class="m sv" id="gh-lang">Python</span></div>
           </div>
           <a href="https://github.com/ather-ops/atlas-agent" target="_blank" rel="noopener noreferrer" class="btn w">View on GitHub</a>
         </div>
@@ -228,8 +481,8 @@
     </div>
   </footer>
 
-<script src="/static/script.js"></script>
-<script src="/static/chat.js"></script>
+  <!-- Load external scripts - these will be served from /static/ by FastAPI -->
+  <script src="/static/script.js"></script>
+  <script src="/static/chat.js"></script>
 </body>
 </html>
-
