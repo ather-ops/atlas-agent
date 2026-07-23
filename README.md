@@ -1,229 +1,74 @@
 <p align="center">
+  <img src="https://github.com/ather-ops/atlas-agent/blob/main/assets/Cover.png" alt="Atlas Agent Cover" width="100%">
+</p>
 
-# Atlas Agent
+<h1 align="center">Atlas Agent</h1>
 
-### Autonomous AI Agent powered by FastAPI, Groq & smolagents
+<h3 align="center">Autonomous AI Agent powered by FastAPI, Groq & smolagents</h3>
 
-**Reason • Plan • Use Tools • Execute • Respond**
+<p align="center">
+  <b>Reason • Plan • Use Tools • Execute • Respond</b>
+</p>
 
-🌐 **Live Demo:** https://atlas-agent-q9s3.onrender.com
-
+<p align="center">
+  <a href="https://atlas-agent-xzve.onrender.com/"><b>Live Demo</b></a>
 </p>
 
 ---
 
-# Overview
+## Overview
 
 Atlas Agent is an autonomous AI assistant built using **smolagents**, **FastAPI**, and **Groq**.
 
-Unlike traditional chatbots, Atlas is designed to **reason through tasks**, decide which tool to use, execute that tool, and return an answer automatically.
+Unlike traditional chatbots, Atlas is designed to reason through tasks, decide which tool to use, execute that tool, and return an answer automatically — with minimal human guidance at each step.
 
-The project focuses on building a production-ready AI assistant with modular architecture, clean engineering practices, and extensible tools.
-
----
-
-# Live Demo
-
-**Atlas Agent Web App**
-
-https://atlas-agent-q9s3.onrender.com
+The project focuses on building a production-ready AI assistant with a modular architecture, clean engineering practices, and an extensible tool system.
 
 ---
 
-# Current Features
+## Live Demo
 
-* Autonomous AI Agent
-* Tool Calling
-* Multi-step Reasoning
-* FastAPI Backend
-* Modern HTML/CSS/JavaScript Frontend
-* Groq LLM Integration
-* REST API
-* Modular Python Architecture
-* Environment Variable Management
+Try Atlas Agent here: **[atlas-agent-xzve.onrender.com](https://atlas-agent-xzve.onrender.com/)**
 
 ---
 
-# Built-in Tools
+## Current Features
 
-* Current Date & Time
-* System Information
-* Live Weather
-* Calculator
-* File Reader
-* File Writer
-* Web Search (Tavily)
-* Python Code Execution
-
----
-
-# Tech Stack
-
-* Python
-* FastAPI
-* Groq API
-* smolagents
-* Tavily API
-* OpenWeather API
-* HTML
-* CSS
-* JavaScript
-* python-dotenv
-* Uvicorn
-* Git
-* GitHub
+- Autonomous AI agent with multi-step reasoning
+- Automatic tool selection and execution
+- FastAPI backend with a REST API
+- Modern HTML/CSS/JavaScript frontend
+- Groq LLM integration for fast inference
+- Modular Python architecture
+- Environment variable-based configuration
 
 ---
 
-# Development Progress
+## Built-in Tools
 
-## Day 1
-
-* Repository Setup
-* GitHub Workflow
-* Project Structure
-* Virtual Environment
-* smolagents Setup
-
----
-
-## Day 2
-
-* Current Date Tool
-* System Information Tool
-* Weather Tool
-* OpenWeather Integration
+| Tool | Description |
+|------|-------------|
+| Current Date & Time | Returns the current date and time |
+| System Information | Reports system/environment details |
+| Live Weather | Fetches real-time weather via OpenWeather |
+| Calculator | Performs mathematical calculations |
+| File Reader | Reads content from files |
+| File Writer | Writes content to files |
+| Web Search | Searches the web using Tavily |
+| Python Code Execution | Executes Python code and returns results |
 
 ---
 
-## Day 3
+## Tech Stack
 
-* API Security
-* Environment Variables
-* Secret Protection
-* Repository Cleanup
-
----
-
-## Day 4
-
-* Calculator Tool
-* File Reader
-* Better Exception Handling
+**Backend:** Python, FastAPI, Uvicorn, smolagents, Groq API
+**Frontend:** HTML, CSS, JavaScript
+**Integrations:** Tavily API, OpenWeather API
+**Tooling:** python-dotenv, Git, GitHub
 
 ---
 
-## Day 5
-
-* File Writer
-* Tavily Web Search
-* Python Code Execution
-* 8 Functional Tools
-
----
-
-## Day 6
-
-* Documentation
-* Security Policy
-* Project Standardization
-* Backend Improvements
-
----
-
-## Day 7
-
-* Hugging Face → Groq Migration
-* Faster Inference
-* Agent Testing
-* Tool Integration
-* Stable Alpha Backend
-
----
-
-## Day 8
-
-* FastAPI Backend
-* REST API
-* HTML Landing Page
-* Interactive Chat UI
-* Frontend Architecture
-* Backend API Testing
-
----
-
-## Day 9
-
-* Connected Frontend with FastAPI
-* Live Chat Interface
-* REST Communication using Fetch API
-* Bug Fixes
-* Render Deployment
-* Public Live Demo
-* Atlas Alpha v1 Released 🎉
-
----
-
-# Roadmap
-
-## Foundation
-
-* [x] Repository Setup
-* [x] Branding
-* [x] Virtual Environment
-* [x] FastAPI
-* [x] Groq Integration
-* [x] smolagents
-* [x] Environment Configuration
-
----
-
-## Core Tools
-
-* [x] Current Time
-* [x] System Information
-* [x] Weather
-* [x] Calculator
-* [x] File Reader
-* [x] File Writer
-* [x] Web Search
-* [x] Python Execution
-
----
-
-## Atlas Alpha v1
-
-* [x] CodeAgent
-* [x] Autonomous Tool Selection
-* [x] FastAPI Backend
-* [x] HTML Frontend
-* [x] Live Chat Interface
-* [x] Public Deployment
-* [x] Alpha Release
-
----
-
-## Upcoming Features
-
-* Research Agent
-* Multi-source Search
-* Citation Generation
-* PDF Report Generation
-* PowerPoint Generation
-* Gmail Integration
-* Google Calendar
-* GitHub Assistant
-* Browser Automation
-* SQL Database Support
-* Vector Database
-* Memory
-* Long-Term Memory
-* Multi-Agent Collaboration
-* Voice Interface
-
----
-
-# Architecture
+## Architecture
 
 ```text
                     User
@@ -256,11 +101,10 @@ https://atlas-agent-q9s3.onrender.com
 
 ---
 
-# Project Structure
+## Project Structure
 
 ```text
 atlas-agent/
-
 ├── atlas/
 │   ├── __init__.py
 │   ├── agent.py
@@ -285,69 +129,114 @@ atlas-agent/
 
 ---
 
-# Current Status
+## Development Progress
 
-## Version
-
-**Atlas Alpha v1**
-
----
-
-## Working Tools
-
-* Date & Time
-* System Information
-* Weather
-* Calculator
-* File Reader
-* File Writer
-* Web Search
-* Python Execution
+| Day | Milestones |
+|-----|------------|
+| 1 | Repository setup, GitHub workflow, project structure, virtual environment, smolagents setup |
+| 2 | Current date tool, system information tool, weather tool, OpenWeather integration |
+| 3 | API security, environment variables, secret protection, repository cleanup |
+| 4 | Calculator tool, file reader, better exception handling |
+| 5 | File writer, Tavily web search, Python code execution — 8 functional tools |
+| 6 | Documentation, security policy, project standardization, backend improvements |
+| 7 | Migrated from Hugging Face to Groq for faster inference, agent testing, tool integration, stable alpha backend |
+| 8 | FastAPI backend, REST API, HTML landing page, interactive chat UI, frontend architecture, backend API testing |
+| 9 | Connected frontend with FastAPI, live chat interface, REST communication via Fetch API, bug fixes, Render deployment, public live demo — Atlas Alpha v1 released |
 
 ---
 
-## Completed
+## Roadmap
 
-* Autonomous Agent
-* FastAPI Backend
-* Modern Frontend
-* REST API
-* Live Deployment
-* Groq Integration
-* 8 Production Tools
-* Modular Architecture
+### Foundation
+- [x] Repository setup
+- [x] Branding
+- [x] Virtual environment
+- [x] FastAPI
+- [x] Groq integration
+- [x] smolagents
+- [x] Environment configuration
+
+### Core Tools
+- [x] Current time
+- [x] System information
+- [x] Weather
+- [x] Calculator
+- [x] File reader
+- [x] File writer
+- [x] Web search
+- [x] Python execution
+
+### Atlas Alpha v1
+- [x] CodeAgent
+- [x] Autonomous tool selection
+- [x] FastAPI backend
+- [x] HTML frontend
+- [x] Live chat interface
+- [x] Public deployment
+- [x] Alpha release
+
+### Upcoming Features
+- [ ] Research agent
+- [ ] Multi-source search
+- [ ] Citation generation
+- [ ] PDF report generation
+- [ ] PowerPoint generation
+- [ ] Gmail integration
+- [ ] Google Calendar
+- [ ] GitHub assistant
+- [ ] Browser automation
+- [ ] SQL database support
+- [ ] Vector database
+- [ ] Memory
+- [ ] Long-term memory
+- [ ] Multi-agent collaboration
+- [ ] Voice interface
 
 ---
 
-## Live Demo
+## Current Status
 
-https://atlas-agent-q9s3.onrender.com
+**Version:** Atlas Alpha v1
+
+**Working Tools:** Date & Time, System Information, Weather, Calculator, File Reader, File Writer, Web Search, Python Execution
+
+**Completed:**
+- Autonomous agent
+- FastAPI backend
+- Modern frontend
+- REST API
+- Live deployment
+- Groq integration
+- 8 production tools
+- Modular architecture
+
+**Live Demo:** [atlas-agent-xzve.onrender.com](https://atlas-agent-xzve.onrender.com/)
 
 ---
 
-# Vision
+## Vision
 
 Atlas Agent is a long-term engineering project focused on building a production-grade autonomous AI assistant.
 
 Rather than becoming another chatbot, Atlas is evolving into an AI operating system capable of reasoning, selecting tools, automating workflows, generating reports, conducting research, executing code, and interacting with real-world services.
 
-Future versions will introduce Research Agents, Memory, Browser Automation, Email Workflows, GitHub Integration, RAG, Multi-Agent Systems, and AI productivity features while maintaining a scalable, production-ready architecture.
+Future versions will introduce research agents, memory, browser automation, email workflows, GitHub integration, RAG, multi-agent systems, and other AI productivity features, all while maintaining a scalable, production-ready architecture.
 
 ---
 
-# Repository Standards
+## Repository Standards
 
-* Modular Architecture
-* Production-Oriented Structure
-* FastAPI REST APIs
-* Secure Environment Variables
-* Clean Codebase
-* GitHub Version Control
-* MIT License
-* Extensible Tool System
+- Modular architecture
+- Production-oriented structure
+- FastAPI REST APIs
+- Secure environment variables
+- Clean codebase
+- GitHub version control
+- MIT License
+- Extensible tool system
 
 ---
 
-# License
+## License
 
 Released under the **MIT License**.
