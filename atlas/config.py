@@ -1,13 +1,22 @@
 import os
+
 from dotenv import load_dotenv
-from smolagents import InferenceClientModel
+from smolagents import OpenAIServerModel
 
 load_dotenv()
 
-GROQ_TOKEN = os.getenv("GROQ_TOKEN")
-WEATHER_API_KEY = os.getenv("WEATHER_API_KEY")
+# API Keys
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+OPENWEATHER_API_KEY = os.getenv("OPENWEATHER_API_KEY")
 TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
-model = InferenceClientModel(
+
+# Validate environment
+if not GROQ_API_KEY:
+    raise ValueError("GROQ_API_KEY not found in .env")
+
+# Atlas LLM
+model = OpenAIServerModel(
     model_id="llama-3.3-70b-versatile",
-    token=GROQ_TOKEN,
+    api_key=GROQ_API_KEY,
+    api_base="https://api.groq.com/openai/v1",
 )

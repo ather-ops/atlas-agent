@@ -32,7 +32,7 @@ Python Version   : {platform.python_version()}
 """
 # Tool 3: Wheather tool
 import requests
-from atlas.config import WEATHER_API_KEY
+from atlas.config import OPENWEATHER_API_KEY
 
 
 @tool
@@ -45,7 +45,7 @@ def get_weather(city: str) -> str:
     url = "https://api.openweathermap.org/data/2.5/weather"
     params = {
         "q": city,
-        "appid": WEATHER_API_KEY,
+        "appid": OPENWEATHER_API_KEY,
         "units": "metric"
     }
     response = requests.get(url, params=params)

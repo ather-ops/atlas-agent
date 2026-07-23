@@ -2,89 +2,67 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
-from dotenv import load_dotenv
-import os
 
+from atlas.agent import agent
 from schemas import ChatRequest, ChatResponse
-
-# Load environment variables
-load_dotenv()
-
-# Try to import agent, but use mock if it fails
-try:
-    from atlas.agent import agent
-    print("Atlas Agent imported successfully")
-except ImportError as e:
-    print(f"Could not import Atlas Agent: {e}")
-    print("Using mock agent for testing...")
-    
-    class MockAgent:
-        def run(self, message):
-            return f"Atlas Agent (mock): Received '{message}'. Your backend is working!"
-    
-    agent = MockAgent()
 
 app = FastAPI(
     title="Atlas Agent API",
-    description="Backend API for Atlas Agent",
-    version="1.0.0"
+    description="Autonomous AI Assistant Backend",
+    version="1.0.0",
 )
 
-# Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*"],  # Change to your domain after deployment
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Mount static files from frontend directory
-if os.path.exists("frontend"):
-    app.mount("/static", StaticFiles(directory="frontend"), name="static")
-else:
-    print("Warning: frontend directory not found")
+app.mount("/static", StaticFiles(directory="frontend"), name="static")
+
 
 @app.get("/")
-def home():
-    if os.path.exists("frontend/index.html"):
-        return FileResponse("frontend/index.html")
-    else:
-        return {"error": "index.html not found"}
+async def home():
+    return FileResponse("frontend/index.html")
 
-@app.post("/chat")
+
+@app.post("/chat", response_model=ChatResponse)
 async def chat(request: ChatRequest):
+    print(f"\nUser: {request.message}")
+
     try:
-        print(f"Received message: {request.message}")
-        answer = agent.run(request.message)
-        
-        # Clean the response - extract just the answer
-        response_text = str(answer)
-        
-        # If answer has attributes, try to get the content
-        if hasattr(answer, 'content'):
-            response_text = str(answer.content)
-        elif hasattr(answer, 'answer'):
-            response_text = str(answer.answer)
-        elif hasattr(answer, 'result'):
-            response_text = str(answer.result)
-        
-        print(f"Response: {response_text}")
-        return ChatResponse(response=response_text)
-        
+        result = agent.run(request.message)
+
+        print(f"Atlas: {result}")
+
+        return ChatResponse(
+            response=str(result)
+        )
+
     except Exception as e:
-        error_msg = f"Error: {str(e)}"
-        print(f"Error: {error_msg}")
-        return ChatResponse(response=error_msg)
+        print(f"\nERROR:\n{e}")
+
+        return ChatResponse(
+            response=f"Error: {str(e)}"
+        )
+
 
 @app.get("/health")
-def health():
-    return {"status": "healthy", "agent_loaded": agent is not None}
+async def health():
+    return {
+        "status": "ok",
+        "agent": "online"
+    }
 
-@app.get("/test")
-def test():
-    return {"message": "Backend is working!"}
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+
+    uvicorn.run(
+        "main:app",
+        host="0.0.0.0",
+        port=8000,
+        reload=True,
+    )
