@@ -1,218 +1,281 @@
 <p align="center">
-  <img src="https://github.com/ather-ops/atlas-agent/blob/main/assets/Logo.png" alt="Atlas Agent Logo" width="120">
+
+# Atlas Agent
+
+### Autonomous AI Agent powered by FastAPI, Groq & smolagents
+
+**Reason • Plan • Use Tools • Execute • Respond**
+
+🌐 **Live Demo:** https://atlas-agent-q9s3.onrender.com
+
 </p>
 
-<h1 align="center">Atlas Agent</h1>
+---
 
-<p align="center">
-  <i>An autonomous AI assistant powered by smolagents.</i>
-</p>
+# Overview
 
-<p align="center">
-  <img src="https://github.com/ather-ops/atlas-agent/blob/main/assets/Cover.png" alt="Atlas Agent Cover">
-</p>
+Atlas Agent is an autonomous AI assistant built using **smolagents**, **FastAPI**, and **Groq**.
+
+Unlike traditional chatbots, Atlas is designed to **reason through tasks**, decide which tool to use, execute that tool, and return an answer automatically.
+
+The project focuses on building a production-ready AI assistant with modular architecture, clean engineering practices, and extensible tools.
 
 ---
 
-## Overview
+# Live Demo
 
-Atlas Agent is an autonomous AI assistant built with **smolagents** that can reason, plan, select tools, execute actions, and solve real-world tasks.
+**Atlas Agent Web App**
 
-Unlike a traditional chatbot, Atlas is designed as a modular AI agent capable of interacting with APIs, local files, Python code, and external services. The project focuses on building a production-oriented autonomous assistant through clean architecture, reusable tools, and intelligent reasoning.
-
-The long-term vision is to transform Atlas into a complete AI productivity platform capable of automating real-world workflows.
+https://atlas-agent-q9s3.onrender.com
 
 ---
 
-## Current Features
+# Current Features
 
-- Autonomous AI Agent Architecture
-- Tool Calling with smolagents
-- Hugging Face Inference Integration
-- Modular Python Architecture
-- Environment Variable Management
-- REST API Integration
-- Local File Operations
-- Live Internet Search
-- Python Code Execution
-- Production-Oriented Project Structure
-
-### Built-in Tools
-
-- Current Date & Time
-- System Information
-- Live Weather (OpenWeather API)
-- Enhanced Calculator
-- File Reader
-- File Writer
-- Web Search (Tavily API)
-- Python Code Executor
+* Autonomous AI Agent
+* Tool Calling
+* Multi-step Reasoning
+* FastAPI Backend
+* Modern HTML/CSS/JavaScript Frontend
+* Groq LLM Integration
+* REST API
+* Modular Python Architecture
+* Environment Variable Management
 
 ---
 
-## Tech Stack
+# Built-in Tools
 
-- Python
-- smolagents
-- Hugging Face Inference API
-- Tavily Search API
-- OpenWeather API
-- Requests
-- python-dotenv
-- Gradio
-- Git
-- GitHub
+* Current Date & Time
+* System Information
+* Live Weather
+* Calculator
+* File Reader
+* File Writer
+* Web Search (Tavily)
+* Python Code Execution
 
 ---
 
-## Development Progress
+# Tech Stack
 
-### Day 1
-- Repository Setup
-- GitHub Workflow
-- Project Structure
-- Virtual Environment
-- Hugging Face Configuration
-- smolagents Setup
-
-### Day 2
-- Current Date & Time Tool
-- System Information Tool
-- Live Weather Tool
-- OpenWeather API Integration
-- Environment Configuration
-
-### Day 3
-- Git Secret Protection
-- API Key Security
-- .env Configuration
-- Repository Cleanup
-- Stable Project Architecture
-
-### Day 4
-- Enhanced Calculator Tool
-- File Reader Tool
-- Local File Handling
-- Exception Handling
-- Tool Validation
-
-### Day 5
-- File Writer Tool
-- Tavily Web Search Tool
-- Python Code Executor
-- Calculator Improvements
-- Atlas reached **8 working tools**
-
-### Day 6
-- Project Documentation Improvements
-- Security Policy Added
-- Repository Standardization
-- Architecture Refinements
-- Preparing CodeAgent Integration
-- Atlas Alpha Backend Completed
+* Python
+* FastAPI
+* Groq API
+* smolagents
+* Tavily API
+* OpenWeather API
+* HTML
+* CSS
+* JavaScript
+* python-dotenv
+* Uvicorn
+* Git
+* GitHub
 
 ---
 
-## Roadmap
+# Development Progress
 
-### Foundation
+## Day 1
 
-- [x] Repository Setup
-- [x] Branding
-- [x] Project Structure
-- [x] Virtual Environment
-- [x] smolagents Setup
-- [x] Hugging Face Integration
-- [x] Environment Configuration
+* Repository Setup
+* GitHub Workflow
+* Project Structure
+* Virtual Environment
+* smolagents Setup
 
-### Core Tools
+---
 
-- [x] Date & Time Tool
-- [x] System Information Tool
-- [x] Weather Tool
-- [x] Calculator Tool
-- [x] File Reader Tool
-- [x] File Writer Tool
-- [x] Web Search Tool
-- [x] Python Code Executor
+## Day 2
+
+* Current Date Tool
+* System Information Tool
+* Weather Tool
+* OpenWeather Integration
+
+---
+
+## Day 3
+
+* API Security
+* Environment Variables
+* Secret Protection
+* Repository Cleanup
+
+---
+
+## Day 4
+
+* Calculator Tool
+* File Reader
+* Better Exception Handling
+
+---
+
+## Day 5
+
+* File Writer
+* Tavily Web Search
+* Python Code Execution
+* 8 Functional Tools
+
+---
+
+## Day 6
+
+* Documentation
+* Security Policy
+* Project Standardization
+* Backend Improvements
+
+---
+
+## Day 7
+
+* Hugging Face → Groq Migration
+* Faster Inference
+* Agent Testing
+* Tool Integration
+* Stable Alpha Backend
+
+---
+
+## Day 8
+
+* FastAPI Backend
+* REST API
+* HTML Landing Page
+* Interactive Chat UI
+* Frontend Architecture
+* Backend API Testing
+
+---
+
+## Day 9
+
+* Connected Frontend with FastAPI
+* Live Chat Interface
+* REST Communication using Fetch API
+* Bug Fixes
+* Render Deployment
+* Public Live Demo
+* Atlas Alpha v1 Released 🎉
+
+---
+
+# Roadmap
+
+## Foundation
+
+* [x] Repository Setup
+* [x] Branding
+* [x] Virtual Environment
+* [x] FastAPI
+* [x] Groq Integration
+* [x] smolagents
+* [x] Environment Configuration
+
+---
+
+## Core Tools
+
+* [x] Current Time
+* [x] System Information
+* [x] Weather
+* [x] Calculator
+* [x] File Reader
+* [x] File Writer
+* [x] Web Search
+* [x] Python Execution
 
 ---
 
 ## Atlas Alpha v1
 
-- [ ] Connect Tools to CodeAgent
-- [ ] Autonomous Tool Selection
-- [ ] Multi-Step Reasoning
-- [ ] HTML Chat Interface
-- [ ] Interactive Web Demo
-- [ ] UI Polish
-- [ ] Alpha Release
+* [x] CodeAgent
+* [x] Autonomous Tool Selection
+* [x] FastAPI Backend
+* [x] HTML Frontend
+* [x] Live Chat Interface
+* [x] Public Deployment
+* [x] Alpha Release
 
 ---
 
-## Planned Integrations
+## Upcoming Features
 
-- Gmail
-- Google Calendar
-- GitHub
-- Slack
-- Notion
-- Browser Automation
-- SQL Databases
-- Vector Database
-- RAG
-- Memory
-- Multi-Agent Architecture
+* Research Agent
+* Multi-source Search
+* Citation Generation
+* PDF Report Generation
+* PowerPoint Generation
+* Gmail Integration
+* Google Calendar
+* GitHub Assistant
+* Browser Automation
+* SQL Database Support
+* Vector Database
+* Memory
+* Long-Term Memory
+* Multi-Agent Collaboration
+* Voice Interface
 
 ---
 
-## Architecture
+# Architecture
 
 ```text
                     User
                       │
                       ▼
-                Atlas Agent
-                      │
-          ┌───────────┴───────────┐
-          │      Think & Plan     │
-          └───────────┬───────────┘
+                Atlas Frontend
                       │
                       ▼
+                FastAPI Backend
+                      │
+                      ▼
+                 Atlas Agent
+                      │
+         ┌────────────┴────────────┐
+         │     Think & Reason      │
+         └────────────┬────────────┘
+                      │
                Select Best Tool
                       │
- ┌────────┬────────┬────────┬────────┐
- ▼        ▼        ▼        ▼        ▼
-Weather Search Files Python Calculator
+      ┌────────┬────────┬────────┬────────┐
+      ▼        ▼        ▼        ▼        ▼
+   Weather  Search   Files   Python  Calculator
                       │
                       ▼
-               Execute Action
+                 Execute Tool
                       │
                       ▼
-                Observation
-                      │
-                      ▼
-               Final Response
+                 Final Response
 ```
 
 ---
 
-## Project Structure
+# Project Structure
 
 ```text
 atlas-agent/
-│
-├── assets/
-│   ├── logo.png
-│   └── cover.png
-│
+
 ├── atlas/
 │   ├── __init__.py
 │   ├── agent.py
 │   ├── config.py
 │   └── tools.py
 │
+├── frontend/
+│   ├── index.html
+│   ├── styles.css
+│   ├── script.js
+│   └── chat.js
+│
 ├── app.py
+├── main.py
+├── schemas.py
 ├── requirements.txt
 ├── README.md
 ├── SECURITY.md
@@ -222,63 +285,69 @@ atlas-agent/
 
 ---
 
-## Current Status
+# Current Status
 
-**Version**
+## Version
 
-Atlas Alpha
-
-**Working Tools**
-
-- Current Date & Time
-- System Information
-- Live Weather
-- Enhanced Calculator
-- File Reader
-- File Writer
-- Web Search
-- Python Code Executor
-
-**Completed**
-
-- 8 Production-Ready Tools
-- API Integrations
-- Security Configuration
-- Modular Architecture
-- Project Documentation
-
-**Currently Building**
-
-- smolagents CodeAgent Integration
-- Autonomous Tool Selection
-- HTML Chat Interface
+**Atlas Alpha v1**
 
 ---
 
-## Vision
+## Working Tools
+
+* Date & Time
+* System Information
+* Weather
+* Calculator
+* File Reader
+* File Writer
+* Web Search
+* Python Execution
+
+---
+
+## Completed
+
+* Autonomous Agent
+* FastAPI Backend
+* Modern Frontend
+* REST API
+* Live Deployment
+* Groq Integration
+* 8 Production Tools
+* Modular Architecture
+
+---
+
+## Live Demo
+
+https://atlas-agent-q9s3.onrender.com
+
+---
+
+# Vision
 
 Atlas Agent is a long-term engineering project focused on building a production-grade autonomous AI assistant.
 
-Rather than creating another chatbot, Atlas combines reasoning, planning, tool usage, API integrations, file operations, internet search, and Python execution into a single extensible platform.
+Rather than becoming another chatbot, Atlas is evolving into an AI operating system capable of reasoning, selecting tools, automating workflows, generating reports, conducting research, executing code, and interacting with real-world services.
 
-Future releases will introduce memory, retrieval-augmented generation (RAG), browser automation, email workflows, GitHub integration, and multi-agent collaboration while maintaining a clean, scalable, and production-ready architecture.
-
----
-
-## Repository Standards
-
-Atlas follows modern software engineering practices.
-
-- Modular Architecture
-- Environment Variable Management
-- GitHub Version Control
-- Security Policy
-- API Key Protection
-- Clean Documentation
-- Production-Oriented Structure
+Future versions will introduce Research Agents, Memory, Browser Automation, Email Workflows, GitHub Integration, RAG, Multi-Agent Systems, and AI productivity features while maintaining a scalable, production-ready architecture.
 
 ---
 
-## License
+# Repository Standards
 
-This project is released under the MIT License.
+* Modular Architecture
+* Production-Oriented Structure
+* FastAPI REST APIs
+* Secure Environment Variables
+* Clean Codebase
+* GitHub Version Control
+* MIT License
+* Extensible Tool System
+
+---
+
+# License
+
+Released under the **MIT License**.
