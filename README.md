@@ -1,6 +1,10 @@
 <p align="center">
-  <img src="https://github.com/ather-ops/atlas-agent/blob/main/assets/Cover.png" alt="Atlas Agent Cover" width="100%">
+  <video src="https://github.com/ather-ops/atlas-agent/blob/main/assets/1000217390.mp4" width="100%" controls autoplay muted loop>
+    Your browser does not support the video tag.
+  </video>
 </p>
+
+-->
 
 <h1 align="center">Atlas Agent</h1>
 
