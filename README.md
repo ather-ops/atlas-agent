@@ -1,10 +1,14 @@
 <p align="center">
-  <video src="https://github.com/ather-ops/atlas-agent/blob/main/assets/1000217390.mp4" width="100%" controls autoplay muted loop>
-    Your browser does not support the video tag.
-  </video>
+  <a href="https://github.com/ather-ops/atlas-agent/blob/main/assets/1000217390.mp4?raw=true">
+    <img src="https://img.shields.io/badge/WATCH_DEMO_VIDEO-RED?style=for-the-badge&logo=video" alt="Watch Demo Video">
+  </a>
+  <br><br>
+  <a href="https://github.com/ather-ops/atlas-agent/blob/main/assets/1000217390.mp4?raw=true">
+    <img src="https://via.placeholder.com/1200x400/0d1117/ffffff?text=Atlas+Agent+Demo+-+Click+to+Watch" width="100%" alt="Atlas Agent Demo - Click to watch">
+  </a>
+  <br>
+  <em>Click the banner above to watch the demo video</em>
 </p>
-
--->
 
 <h1 align="center">Atlas Agent</h1>
 
@@ -16,15 +20,45 @@
 
 <p align="center">
   <a href="https://atlas-agent-xzve.onrender.com/"><b>Live Demo</b></a>
+  &nbsp;•&nbsp;
+  <a href="#overview"><b>Overview</b></a>
+  &nbsp;•&nbsp;
+  <a href="#features"><b>Features</b></a>
+  &nbsp;•&nbsp;
+  <a href="#architecture"><b>Architecture</b></a>
+  &nbsp;•&nbsp;
+  <a href="#roadmap"><b>Roadmap</b></a>
 </p>
+
+---
+
+## Demo Video
+
+Watch Atlas Agent in action:
+
+<p align="center">
+  <a href="https://github.com/ather-ops/atlas-agent/blob/main/assets/1000217390.mp4?raw=true">
+    <img src="https://via.placeholder.com/800x400/1a1a2e/ffffff?text=Click+to+Watch+Atlas+Agent+Demo" width="80%" alt="Click to watch demo">
+  </a>
+  <br>
+  <em>Click the image to download or view the demo video</em>
+</p>
+
+What you'll see in the demo:
+- Autonomous reasoning and tool selection
+- Real-time weather information
+- Web search capabilities
+- Calculator and file operations
+- Fast Groq-powered inference
+- Interactive chat interface
 
 ---
 
 ## Overview
 
-Atlas Agent is an autonomous AI assistant built using **smolagents**, **FastAPI**, and **Groq**.
+Atlas Agent is an autonomous AI assistant built using smolagents, FastAPI, and Groq.
 
-Unlike traditional chatbots, Atlas is designed to reason through tasks, decide which tool to use, execute that tool, and return an answer automatically — with minimal human guidance at each step.
+Unlike traditional chatbots, Atlas is designed to reason through tasks, decide which tool to use, execute that tool, and return an answer automatically with minimal human guidance at each step.
 
 The project focuses on building a production-ready AI assistant with a modular architecture, clean engineering practices, and an extensible tool system.
 
@@ -32,11 +66,11 @@ The project focuses on building a production-ready AI assistant with a modular a
 
 ## Live Demo
 
-Try Atlas Agent here: **[atlas-agent-xzve.onrender.com](https://atlas-agent-xzve.onrender.com/)**
+Try Atlas Agent here: atlas-agent-xzve.onrender.com
 
 ---
 
-## Current Features
+## Features
 
 - Autonomous AI agent with multi-step reasoning
 - Automatic tool selection and execution
@@ -45,30 +79,36 @@ Try Atlas Agent here: **[atlas-agent-xzve.onrender.com](https://atlas-agent-xzve
 - Groq LLM integration for fast inference
 - Modular Python architecture
 - Environment variable-based configuration
+- Production-ready deployment
 
 ---
 
 ## Built-in Tools
 
-| Tool | Description |
-|------|-------------|
-| Current Date & Time | Returns the current date and time |
-| System Information | Reports system/environment details |
-| Live Weather | Fetches real-time weather via OpenWeather |
-| Calculator | Performs mathematical calculations |
-| File Reader | Reads content from files |
-| File Writer | Writes content to files |
-| Web Search | Searches the web using Tavily |
-| Python Code Execution | Executes Python code and returns results |
+| Tool | Description | Status |
+|------|-------------|--------|
+| Current Date & Time | Returns the current date and time | Active |
+| System Information | Reports system/environment details | Active |
+| Live Weather | Fetches real-time weather via OpenWeather | Active |
+| Calculator | Performs mathematical calculations | Active |
+| File Reader | Reads content from files | Active |
+| File Writer | Writes content to files | Active |
+| Web Search | Searches the web using Tavily | Active |
+| Python Code Execution | Executes Python code and returns results | Active |
 
 ---
 
 ## Tech Stack
 
-**Backend:** Python, FastAPI, Uvicorn, smolagents, Groq API
-**Frontend:** HTML, CSS, JavaScript
-**Integrations:** Tavily API, OpenWeather API
-**Tooling:** python-dotenv, Git, GitHub
+Backend: Python, FastAPI, Uvicorn, smolagents, Groq API
+
+Frontend: HTML, CSS, JavaScript
+
+Integrations: Tavily API, OpenWeather API
+
+Tooling: python-dotenv, Git, GitHub
+
+Deployment: Render
 
 ---
 
@@ -76,34 +116,31 @@ Try Atlas Agent here: **[atlas-agent-xzve.onrender.com](https://atlas-agent-xzve
 
 ```text
                     User
-                      │
-                      ▼
+                      |
+                      v
                 Atlas Frontend
-                      │
-                      ▼
+                      |
+                      v
                 FastAPI Backend
-                      │
-                      ▼
+                      |
+                      v
                  Atlas Agent
-                      │
-         ┌────────────┴────────────┐
-         │     Think & Reason      │
-         └────────────┬────────────┘
-                      │
+                      |
+         +------------+------------+
+         |     Think & Reason      |
+         +------------+------------+
+                      |
                Select Best Tool
-                      │
-      ┌────────┬────────┬────────┬────────┐
-      ▼        ▼        ▼        ▼        ▼
+                      |
+      +--------+--------+--------+--------+
+      v        v        v        v        v
    Weather  Search   Files   Python  Calculator
-                      │
-                      ▼
+                      |
+                      v
                  Execute Tool
-                      │
-                      ▼
+                      |
+                      v
                  Final Response
-```
-
----
 
 ## Project Structure
 
