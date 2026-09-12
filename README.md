@@ -1,14 +1,8 @@
 <p align="center">
-  <a href="https://github.com/ather-ops/atlas-agent/blob/main/assets/1000217390.mp4?raw=true">
-    <img src="https://img.shields.io/badge/WATCH_DEMO_VIDEO-RED?style=for-the-badge&logo=video" alt="Watch Demo Video">
-  </a>
-  <br><br>
-  <a href="https://github.com/ather-ops/atlas-agent/blob/main/assets/1000217390.mp4?raw=true">
-    <img src="https://via.placeholder.com/1200x400/0d1117/ffffff?text=Atlas+Agent+Demo+-+Click+to+Watch" width="100%" alt="Atlas Agent Demo - Click to watch">
-  </a>
-  <br>
-  <em>Click the banner above to watch the demo video</em>
+  <img src="https://img.shields.io/badge/STATUS-UNDER%20MAINTENANCE-orange?style=for-the-badge" alt="Under Maintenance">
 </p>
+
+> ⚠️ **This project is currently under maintenance.** Some features, the live demo, or parts of the backend may be temporarily unavailable while updates are being made. Thank you for your patience.
 
 <h1 align="center">Atlas Agent</h1>
 
@@ -37,11 +31,15 @@
 Watch Atlas Agent in action:
 
 <p align="center">
-  <a href="https://github.com/ather-ops/atlas-agent/blob/main/assets/1000217390.mp4?raw=true">
-    <img src="https://via.placeholder.com/800x400/1a1a2e/ffffff?text=Click+to+Watch+Atlas+Agent+Demo" width="80%" alt="Click to watch demo">
-  </a>
-  <br>
-  <em>Click the image to download or view the demo video</em>
+  <video src="https://github.com/ather-ops/atlas-agent/blob/main/assets/1000217390.mp4?raw=true" controls muted playsinline width="800">
+    Your browser does not support the video tag. 
+    <a href="https://github.com/ather-ops/atlas-agent/blob/main/assets/1000217390.mp4?raw=true">Click here to download/watch the video</a>.
+  </video>
+</p>
+
+<p align="center">
+  <em>If the video doesn't play inline, 
+  <a href="https://github.com/ather-ops/atlas-agent/blob/main/assets/1000217390.mp4?raw=true">click here to watch it directly</a>.</em>
 </p>
 
 What you'll see in the demo:
@@ -67,6 +65,8 @@ The project focuses on building a production-ready AI assistant with a modular a
 ## Live Demo
 
 Try Atlas Agent here: atlas-agent-xzve.onrender.com
+
+> ⚠️ Note: The live demo may be intermittently unavailable while the project is under maintenance.
 
 ---
 
@@ -141,6 +141,7 @@ Deployment: Render
                       |
                       v
                  Final Response
+```
 
 ## Project Structure
 
@@ -239,6 +240,8 @@ atlas-agent/
 
 **Version:** Atlas Alpha v1
 
+**Project Status:** ⚠️ Under Maintenance
+
 **Working Tools:** Date & Time, System Information, Weather, Calculator, File Reader, File Writer, Web Search, Python Execution
 
 **Completed:**
@@ -251,7 +254,7 @@ atlas-agent/
 - 8 production tools
 - Modular architecture
 
-**Live Demo:** [atlas-agent-xzve.onrender.com](https://atlas-agent-xzve.onrender.com/)
+**Live Demo:** [atlas-agent-xzve.onrender.com](https://atlas-agent-xzve.onrender.com/) *(may be intermittently unavailable during maintenance)*
 
 ---
 
