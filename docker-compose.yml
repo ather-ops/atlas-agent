@@ -1,0 +1,18 @@
+services:
+  atlas:
+    build: .
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      ATLAS_ENVIRONMENT: production
+      ATLAS_CORS_ORIGINS: "[]"
+      ATLAS_OWNER_TOKEN: ${ATLAS_OWNER_TOKEN:?Set a private owner token of at least 24 characters}
+      ATLAS_DATA_DIR: /var/lib/atlas
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+      TAVILY_API_KEY: ${TAVILY_API_KEY:-}
+      OPENWEATHER_API_KEY: ${OPENWEATHER_API_KEY:-}
+    volumes:
+      - atlas-data:/var/lib/atlas
+    restart: unless-stopped
+volumes:
+  atlas-data:

@@ -1,0 +1,118 @@
+import {
+  Telescope,
+  Feather,
+  Files,
+  Workflow,
+  Code2,
+  Globe2,
+  Lightbulb,
+  Calculator,
+  Clock3,
+  Sparkles,
+} from 'lucide-react'
+
+// Library, searchable commands and welcome cards share the exact same prompt.
+const catalog = {
+  research: {
+    title: 'Research a topic',
+    description: 'Explore a subject and discover useful sources.',
+    icon: Telescope,
+    tone: 'lilac',
+    art: 'research',
+    category: 'Research',
+    prompt: 'Research the latest AI developments and highlight the most useful sources.',
+  },
+  brainstorm: {
+    title: 'Brainstorm ideas',
+    description: 'Find a fresh angle for your next big idea.',
+    icon: Sparkles,
+    tone: 'peach',
+    art: 'ideas',
+    category: 'Writing',
+    prompt:
+      'Help me brainstorm three original ideas for a personal project. Ask me about my interests first.',
+  },
+  analyze: {
+    title: 'Analyze a file',
+    description: 'Turn a document into clear, useful insights.',
+    icon: Files,
+    tone: 'blue',
+    art: 'analysis',
+    category: 'Analysis',
+    prompt: 'Analyze the attached document and summarize the key takeaways.',
+  },
+  explain: {
+    title: 'Explain a concept',
+    description: 'Break a complex topic into simple parts.',
+    icon: Lightbulb,
+    tone: 'lilac',
+    art: 'research',
+    category: 'Research',
+    prompt: 'Explain a complex technical topic: how do database indexes work?',
+  },
+  draft: {
+    title: 'Write a first draft',
+    description: 'Shape a starting thought into a project brief.',
+    icon: Feather,
+    tone: 'peach',
+    art: 'ideas',
+    category: 'Writing',
+    prompt: 'Help me draft a clear project brief. Ask me about the goal and audience first.',
+  },
+  script: {
+    title: 'Create a script',
+    description: 'Get a focused Python example to build on.',
+    icon: Code2,
+    tone: 'blue',
+    art: 'analysis',
+    category: 'Code',
+    prompt: 'Create a Python script that summarizes a CSV file.',
+  },
+  search: {
+    title: 'Search the web',
+    description: 'Find current information from the web.',
+    icon: Globe2,
+    tone: 'lilac',
+    art: 'research',
+    category: 'Research',
+    prompt: 'Search the web for accessible introductions to machine learning.',
+  },
+  workflow: {
+    title: 'Plan a workflow',
+    description: 'Map a repeatable task into practical steps.',
+    icon: Workflow,
+    tone: 'peach',
+    art: 'ideas',
+    category: 'Workflows',
+    prompt: 'Help me plan a workflow for a repetitive task.',
+  },
+  calculate: {
+    title: 'Try a calculation',
+    description: 'Put the built-in calculator to work.',
+    icon: Calculator,
+    tone: 'blue',
+    art: 'analysis',
+    category: 'Tools',
+    prompt: 'Calculate (48 + 12) * 3',
+  },
+  clock: {
+    title: 'Check the time',
+    description: 'Read the workspace clock.',
+    icon: Clock3,
+    tone: 'sage',
+    art: 'ideas',
+    category: 'Tools',
+    prompt: 'What time is it?',
+  },
+} as const
+export const prompts = Object.values(catalog)
+export const promptSets = [
+  [catalog.research, catalog.brainstorm, catalog.analyze],
+  [catalog.explain, catalog.draft, catalog.script],
+  [catalog.search, catalog.workflow, catalog.calculate],
+] as const
+export const starters = [
+  { title: 'Get to know Atlas', prompt: 'What can you help me with?' },
+  { title: 'Explore workspace tools', prompt: 'Show me my workspace tools.' },
+  { title: 'Try a quick calculation', prompt: catalog.calculate.prompt },
+]
