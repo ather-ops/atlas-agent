@@ -1,87 +1,19 @@
-# Security Policy
+# Security policy
 
-## Supported Versions
+Report suspected vulnerabilities through a private GitHub security advisory if enabled, or contact the maintainer privately. Do not post credentials, personal chats, unredacted logs or sensitive reproduction material in a public issue. Report the affected revision, expected boundary and impact. Rotate any exposed key through its issuing service.
 
-Atlas Agent is currently under active development. Security updates and bug fixes are provided only for the latest development version.
+## Supported scope
 
-| Version | Supported |
-|---------|-----------|
-| Alpha (main) | Yes |
-| Pre-Alpha | No |
-| Archived Releases | No |
+The current 2.0 personal-workspace code is the supported development line. The archived Alpha implementation is not safe for public deployment: its file and Python tools ran with server privileges. Preserve it in Git history, not as an alternate live endpoint.
 
----
+## Operational requirements
 
-## Reporting a Vulnerability
+- Use **one worker**, owner-gated production mode, HTTPS, a private persistent data directory and tested backups. Do not expose an unprotected development server with real service keys.
+- The operator token gates the deployment. A random HTTP-only cookie isolates each browser workspace. These are not enterprise identity, account recovery or a multi-user authorization system.
+- Saved service keys are encrypted server-side and never returned. Keep the encryption key, environment secrets, SQLite data and backup material out of Git. A compromise of both the data volume and its local master key defeats at-rest key encryption; use a separately managed key where appropriate.
+- Conversations and approved text files are **not** encrypted by the application. Model calls send the prompt, included history and attachments to Groq. Search and weather send authorized queries/city names to their respective providers. Use Local tools only and disable external tools for offline work.
+- External content is data, not authorization. Tool inputs have limits and schemas, untrusted observations close the tool loop, and creating an immutable workspace file requires explicit confirmation. No email sending, destructive file operations, remote GitHub writes or free-form shell execution is available.
+- Uploads are bounded UTF-8 text only. Do not generalize this implementation into a PDF parser, browser agent or general-purpose code runner without a new threat model.
+- In-process rate limits and execution budgets supplement, but do not replace, a TLS reverse proxy, infrastructure-level abuse protection and resource limits.
 
-If you discover a security vulnerability in Atlas Agent, please report it responsibly.
-
-### How to Report
-
-If GitHub Security Advisories are enabled for this repository, please submit a private security advisory.
-
-If they are not available, contact the project maintainer privately instead of opening a public issue.
-
-Please include the following information:
-
-- Description of the vulnerability
-- Steps to reproduce the issue
-- Expected behavior
-- Actual behavior
-- Potential impact
-- Screenshots or logs (if applicable)
-
----
-
-## Response Process
-
-Every reported vulnerability will go through the following process:
-
-1. Acknowledgement within 72 hours.
-2. Investigation and validation of the report.
-3. Severity assessment.
-4. Development and testing of a fix.
-5. Security patch release if required.
-6. Public disclosure after the issue has been resolved.
-
----
-
-## Scope
-
-This security policy applies to:
-
-- Atlas Agent source code
-- Python modules
-- Tool implementations
-- Configuration files
-- API integrations
-- Environment variable management
-
-Third-party services including Hugging Face, OpenWeather, GitHub, or any other external providers follow their own security policies.
-
----
-
-## Security Best Practices
-
-When contributing to Atlas Agent:
-
-- Never commit API keys, access tokens, passwords, or secrets.
-- Store sensitive credentials inside a `.env` file.
-- Keep `.env` listed in `.gitignore`.
-- Rotate exposed credentials immediately if they are accidentally leaked.
-- Validate all user input before processing.
-- Keep project dependencies updated.
-- Follow the principle of least privilege when integrating external services.
-- Review code before merging changes.
-
----
-
-## Responsible Disclosure
-
-Please do not publicly disclose security vulnerabilities until they have been investigated and resolved. Responsible disclosure helps protect users while allowing sufficient time to develop and release a fix.
-
----
-
-## Project Status
-
-Atlas Agent is currently an Alpha-stage open-source project. Security practices, dependency management, and vulnerability response procedures will continue to improve as the project evolves toward a production-ready autonomous AI platform.
+The included negative tests and contract tests are engineering safeguards, not an independent penetration test or security certification. See [architecture](docs/architecture.md) and [verification](docs/verification.md).

@@ -1,286 +1,66 @@
-<p align="center">
-  <img src="https://img.shields.io/badge/STATUS-UNDER%20MAINTENANCE-orange?style=for-the-badge" alt="Under Maintenance">
-</p>
+# Atlas 2.0
 
-> ⚠️ **This project is currently under maintenance.** Some features, the live demo, or parts of the backend may be temporarily unavailable while updates are being made. Thank you for your patience.
+**One personal AI workspace for conversations, tools and repeatable tasks.**
 
-<h1 align="center">Atlas Agent</h1>
+Atlas combines a React interface with a FastAPI service, a bounded LangGraph agent and persistent SQLite history. New workspaces open with **Welcome to Atlas**. Choose **Add your name** to personalize the greeting for this workspace, or start chatting without a name. **Workspace** in the top bar shows real activity; an empty history shows clearly labeled starters, not invented conversations or runs.
 
-<h3 align="center">Autonomous AI Agent powered by FastAPI, Groq & smolagents</h3>
+![Atlas chat window over a blurred lavender sky, with the Atlas orb logo, centered composer and three suggested prompts](docs/images/workspace.webp)
 
-<p align="center">
-  <b>Reason • Plan • Use Tools • Execute • Respond</b>
-</p>
+## Try it
 
-<p align="center">
-  <a href="https://atlas-agent-xzve.onrender.com/"><b>Live Demo</b></a>
-  &nbsp;•&nbsp;
-  <a href="#overview"><b>Overview</b></a>
-  &nbsp;•&nbsp;
-  <a href="#features"><b>Features</b></a>
-  &nbsp;•&nbsp;
-  <a href="#architecture"><b>Architecture</b></a>
-  &nbsp;•&nbsp;
-  <a href="#roadmap"><b>Roadmap</b></a>
-</p>
+With **Python 3.12+** and **Node 22**, from the repository root:
 
----
-
-## Demo Video
-
-Watch Atlas Agent in action:
-
-<p align="center">
-  <video src="https://github.com/ather-ops/atlas-agent/blob/main/assets/1000217390.mp4?raw=true" controls muted playsinline width="800">
-    Your browser does not support the video tag. 
-    <a href="https://github.com/ather-ops/atlas-agent/blob/main/assets/1000217390.mp4?raw=true">Click here to download/watch the video</a>.
-  </video>
-</p>
-
-<p align="center">
-  <em>If the video doesn't play inline, 
-  <a href="https://github.com/ather-ops/atlas-agent/blob/main/assets/1000217390.mp4?raw=true">click here to watch it directly</a>.</em>
-</p>
-
-What you'll see in the demo:
-- Autonomous reasoning and tool selection
-- Real-time weather information
-- Web search capabilities
-- Calculator and file operations
-- Fast Groq-powered inference
-- Interactive chat interface
-
----
-
-## Overview
-
-Atlas Agent is an autonomous AI assistant built using smolagents, FastAPI, and Groq.
-
-Unlike traditional chatbots, Atlas is designed to reason through tasks, decide which tool to use, execute that tool, and return an answer automatically with minimal human guidance at each step.
-
-The project focuses on building a production-ready AI assistant with a modular architecture, clean engineering practices, and an extensible tool system.
-
----
-
-## Live Demo
-
-Try Atlas Agent here: atlas-agent-xzve.onrender.com
-
-> ⚠️ Note: The live demo may be intermittently unavailable while the project is under maintenance.
-
----
-
-## Features
-
-- Autonomous AI agent with multi-step reasoning
-- Automatic tool selection and execution
-- FastAPI backend with a REST API
-- Modern HTML/CSS/JavaScript frontend
-- Groq LLM integration for fast inference
-- Modular Python architecture
-- Environment variable-based configuration
-- Production-ready deployment
-
----
-
-## Built-in Tools
-
-| Tool | Description | Status |
-|------|-------------|--------|
-| Current Date & Time | Returns the current date and time | Active |
-| System Information | Reports system/environment details | Active |
-| Live Weather | Fetches real-time weather via OpenWeather | Active |
-| Calculator | Performs mathematical calculations | Active |
-| File Reader | Reads content from files | Active |
-| File Writer | Writes content to files | Active |
-| Web Search | Searches the web using Tavily | Active |
-| Python Code Execution | Executes Python code and returns results | Active |
-
----
-
-## Tech Stack
-
-Backend: Python, FastAPI, Uvicorn, smolagents, Groq API
-
-Frontend: HTML, CSS, JavaScript
-
-Integrations: Tavily API, OpenWeather API
-
-Tooling: python-dotenv, Git, GitHub
-
-Deployment: Render
-
----
-
-## Architecture
-
-```text
-                    User
-                      |
-                      v
-                Atlas Frontend
-                      |
-                      v
-                FastAPI Backend
-                      |
-                      v
-                 Atlas Agent
-                      |
-         +------------+------------+
-         |     Think & Reason      |
-         +------------+------------+
-                      |
-               Select Best Tool
-                      |
-      +--------+--------+--------+--------+
-      v        v        v        v        v
-   Weather  Search   Files   Python  Calculator
-                      |
-                      v
-                 Execute Tool
-                      |
-                      v
-                 Final Response
+```bash
+python -m venv .venv
+source .venv/bin/activate                 # Windows PowerShell: .\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+npm --prefix frontend ci
+npm --prefix frontend run build
+python -m uvicorn backend.app.main:app --host 127.0.0.1 --port 8000 --no-access-log
 ```
 
-## Project Structure
+Open **http://127.0.0.1:8000**. Enter **`Calculate (48 + 12) * 3`** in the overview. Atlas will open a conversation, run the calculator, return **180** and save the exchange. No API key is needed for this path.
+
+For open-ended AI conversations, go to **Settings → Agent & model → Configure key**. Groq credentials are verified server-side before persistence. Environment keys are also supported; their presence alone is not a successful live verification.
+
+## What is available
+
+| Workspace | Implemented behavior |
+|---|---|
+| **Overview** | Personalized welcome, multiline command-to-chat with attachments, suggested prompts and prompt library. Open **Workspace** for conversation counts, tool usage and recent workflow activity. |
+| **Chat** | Groq token streaming and native tool calls when configured, deterministic local commands, a multicolor window edge only while answering (static with reduced motion), activity summaries, stop, regenerate, Markdown/code copying, bounded text attachments, reopen, Markdown export and deletion. |
+| **Automations** | Create a named manual workflow with a description and explicit local tool. Run, pause, resume and inspect the last 20 results. No scheduling engine or arbitrary generated actions. |
+| **Integrations** | Verify/configure Tavily and OpenWeather. Gmail, Notion, Drive, Slack, GitHub and Calendar have local brand icons and **Coming soon** details; they do not access accounts. |
+| **Settings** | Profile, theme, model, response style, history context and external-tool preferences. Encrypted write-only credential storage. |
+
+### Eight tool contracts
+
+- **Date/time:** UTC clock. Try `What time is it?`
+- **System information:** safe Atlas application metadata, not host inspection. Try `Show my workspace tools.`
+- **Calculator:** bounded numeric AST interpreter; no Python evaluation.
+- **File read/write:** private `.txt`, `.md`, `.csv` files. `Write note.txt: A useful idea` produces an exact, expiring approval request. After approval, `Read note.txt` reads it. No overwrite or arbitrary paths.
+- **Restricted Python:** `Python: n = 6 * 7` followed by a newline and `print(n)`. A separate process interprets a tiny numeric subset, not general Python.
+- **Weather:** `Weather in Srinagar` with OpenWeather configured.
+- **Search:** `Search the web for Python documentation` with Tavily configured.
+
+Attaching a text file does not silently create a workspace file. Without Groq, document inspection reports real word/line counts and a preview; it does not pretend to provide semantic analysis.
+
+## Engineering notes
+
+- [Original repository audit and rebuild plan](docs/audit.md)
+- [Architecture, data model and streaming contract](docs/architecture.md)
+- [Windows, development, Docker and Render setup](docs/setup.md)
+- [Phase gates and test evidence](docs/verification.md)
+- [Product roadmap and deferred work](docs/roadmap.md)
+- [Security and disclosure](SECURITY.md) · [Asset credits](docs/credits.md)
 
 ```text
-atlas-agent/
-├── atlas/
-│   ├── __init__.py
-│   ├── agent.py
-│   ├── config.py
-│   └── tools.py
-│
-├── frontend/
-│   ├── index.html
-│   ├── styles.css
-│   ├── script.js
-│   └── chat.js
-│
-├── app.py
-├── main.py
-├── schemas.py
-├── requirements.txt
-├── README.md
-├── SECURITY.md
-├── .gitignore
-└── .env
+backend/app/   api/v1 · agent · core · database · integrations · services · tools
+backend/tests/ unit, API, stream, persistence and opt-in provider checks
+frontend/src/  layouts · pages · components/ui · contexts · services · styles
+frontend/tests/ Playwright tests against a real FastAPI service
 ```
 
----
+This milestone is a **single-process personal assistant**, not a multi-tenant SaaS. Production mode requires an owner gate. Use durable private storage, TLS and backups before hosting. The original alpha commit, license and historical media remain intact.
 
-## Development Progress
-
-| Day | Milestones |
-|-----|------------|
-| 1 | Repository setup, GitHub workflow, project structure, virtual environment, smolagents setup |
-| 2 | Current date tool, system information tool, weather tool, OpenWeather integration |
-| 3 | API security, environment variables, secret protection, repository cleanup |
-| 4 | Calculator tool, file reader, better exception handling |
-| 5 | File writer, Tavily web search, Python code execution — 8 functional tools |
-| 6 | Documentation, security policy, project standardization, backend improvements |
-| 7 | Migrated from Hugging Face to Groq for faster inference, agent testing, tool integration, stable alpha backend |
-| 8 | FastAPI backend, REST API, HTML landing page, interactive chat UI, frontend architecture, backend API testing |
-| 9 | Connected frontend with FastAPI, live chat interface, REST communication via Fetch API, bug fixes, Render deployment, public live demo — Atlas Alpha v1 released |
-
----
-
-## Roadmap
-
-### Foundation
-- [x] Repository setup
-- [x] Branding
-- [x] Virtual environment
-- [x] FastAPI
-- [x] Groq integration
-- [x] smolagents
-- [x] Environment configuration
-
-### Core Tools
-- [x] Current time
-- [x] System information
-- [x] Weather
-- [x] Calculator
-- [x] File reader
-- [x] File writer
-- [x] Web search
-- [x] Python execution
-
-### Atlas Alpha v1
-- [x] CodeAgent
-- [x] Autonomous tool selection
-- [x] FastAPI backend
-- [x] HTML frontend
-- [x] Live chat interface
-- [x] Public deployment
-- [x] Alpha release
-
-### Upcoming Features
-- [ ] Research agent
-- [ ] Multi-source search
-- [ ] Citation generation
-- [ ] PDF report generation
-- [ ] PowerPoint generation
-- [ ] Gmail integration
-- [ ] Google Calendar
-- [ ] GitHub assistant
-- [ ] Browser automation
-- [ ] SQL database support
-- [ ] Vector database
-- [ ] Memory
-- [ ] Long-term memory
-- [ ] Multi-agent collaboration
-- [ ] Voice interface
-
----
-
-## Current Status
-
-**Version:** Atlas Alpha v1
-
-**Project Status:** ⚠️ Under Maintenance
-
-**Working Tools:** Date & Time, System Information, Weather, Calculator, File Reader, File Writer, Web Search, Python Execution
-
-**Completed:**
-- Autonomous agent
-- FastAPI backend
-- Modern frontend
-- REST API
-- Live deployment
-- Groq integration
-- 8 production tools
-- Modular architecture
-
-**Live Demo:** [atlas-agent-xzve.onrender.com](https://atlas-agent-xzve.onrender.com/) *(may be intermittently unavailable during maintenance)*
-
----
-
-## Vision
-
-Atlas Agent is a long-term engineering project focused on building a production-grade autonomous AI assistant.
-
-Rather than becoming another chatbot, Atlas is evolving into an AI operating system capable of reasoning, selecting tools, automating workflows, generating reports, conducting research, executing code, and interacting with real-world services.
-
-Future versions will introduce research agents, memory, browser automation, email workflows, GitHub integration, RAG, multi-agent systems, and other AI productivity features, all while maintaining a scalable, production-ready architecture.
-
----
-
-## Repository Standards
-
-- Modular architecture
-- Production-oriented structure
-- FastAPI REST APIs
-- Secure environment variables
-- Clean codebase
-- GitHub version control
-- MIT License
-- Extensible tool system
-
----
-
-## License
-
-Released under the **MIT License**.
+*Think beyond chat. Build beyond automation.*

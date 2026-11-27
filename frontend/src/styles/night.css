@@ -1,0 +1,148 @@
+/* Night preserves the silhouette of the floating window, without bright paper or hard shadows. */
+:root[data-theme='dark'] .desktop-stage:before {
+  background: linear-gradient(120deg, #151124a6, #24203696, #2e1b31a3);
+}
+:root[data-theme='dark'] .app-shell {
+  background: #201f29ee;
+  border-color: #ffffff25;
+  box-shadow:
+    inset 0 1px 0 #ffffff0e,
+    0 20px 70px -24px #0d071a94;
+}
+:root[data-theme='dark'] .main-shell {
+  background: var(--surface);
+  border-color: #403b49;
+}
+:root[data-theme='dark'] .new-conversation {
+  background: #e6dff0;
+  border-color: #e6dff0;
+  color: #26212f;
+}
+:root[data-theme='dark'] .new-conversation kbd {
+  color: #60536c;
+  border-color: #6c617c40;
+}
+:root[data-theme='dark'] .new-conversation:hover {
+  background: #f0eaf6;
+}
+:root[data-theme='dark'] .rail-search,
+:root[data-theme='dark'] .profile-row {
+  background: #2a2733;
+  border-color: #3c3846;
+}
+:root[data-theme='dark'] .nav-label,
+:root[data-theme='dark'] .nav-item svg,
+:root[data-theme='dark'] .recent-link svg {
+  color: #aaa2b6;
+}
+:root[data-theme='dark'] .nav-item.active svg {
+  color: inherit;
+}
+:root[data-theme='dark'] .nav-item:hover,
+:root[data-theme='dark'] .recent-link:hover {
+  background: var(--soft);
+}
+:root[data-theme='dark'] .app-tray small {
+  background: #332d3f;
+  border-color: #49414f;
+  color: #cbc0d8;
+}
+:root[data-theme='dark'] .rail-apps button {
+  background: #e8e4ed;
+  border-color: #e1dce7;
+}
+:root[data-theme='dark'] .online-pill {
+  color: #a5c8b1;
+}
+:root[data-theme='dark'] .studio-greeting:before {
+  background: radial-gradient(ellipse, #8f62ca21, transparent 67%);
+}
+:root[data-theme='dark'] .welcome-orb {
+  filter: brightness(0.87) saturate(0.95) drop-shadow(0 6px 16px #c6abe414);
+}
+:root[data-theme='dark'] .hello-line {
+  background-image: linear-gradient(105deg, #c0a1e4, #d9b0cc);
+}
+:root[data-theme='dark'] .atlas-composer {
+  background: #292731;
+  border-color: #4d435a;
+  box-shadow:
+    0 0 0 4px #bda4db09,
+    0 8px 25px -12px #110d1d66;
+}
+:root[data-theme='dark'] .atlas-composer:focus-within {
+  border-color: #9075a8;
+}
+:root[data-theme='dark'] .draft-shelf {
+  background: #302a39;
+  border-color: #45394f;
+}
+:root[data-theme='dark'] .draft-shelf button,
+:root[data-theme='dark'] .draft-shelf button svg {
+  color: #c6b3d3;
+}
+:root[data-theme='dark'] .agent-mode {
+  background: #403348;
+  color: #d2b4ea;
+  border-color: #54425f;
+}
+:root[data-theme='dark'] .web-tool {
+  background: #2c2934;
+  border-color: #47404f;
+}
+:root[data-theme='dark'] .starter-card {
+  background: linear-gradient(120deg, #302936, #29272f);
+  border-color: #42384b;
+}
+:root[data-theme='dark'] .starter-card.ideas {
+  background: linear-gradient(120deg, #352d30, #2c292e);
+  border-color: #4a3d42;
+}
+:root[data-theme='dark'] .starter-card.analysis {
+  background: linear-gradient(120deg, #282f39, #27292f);
+  border-color: #38434e;
+}
+:root[data-theme='dark'] .starter-card:hover {
+  border-color: #7c6b90;
+}
+:root[data-theme='dark'] .starter-heading h2,
+:root[data-theme='dark'] .starter-heading button {
+  color: #b5a7c1;
+}
+:root[data-theme='dark'] .tag-green {
+  color: #a9ceb5;
+  background: #293a30;
+}
+:root[data-theme='dark'] .workflow-banner {
+  background: #302d40;
+  border-color: #474252;
+  color: #e1d9f1;
+}
+:root[data-theme='dark'] .workflow-banner p {
+  color: #bcb3cc;
+}
+:root[data-theme='dark'] .lilac {
+  background: #393044;
+  color: #c8b2df;
+}
+:root[data-theme='dark'] .blue {
+  background: #2b3848;
+  color: #a7c5e1;
+}
+:root[data-theme='dark'] .peach {
+  background: #3c352e;
+  color: #d2b79c;
+}
+:root[data-theme='dark'] .sage {
+  background: #2b3933;
+  color: #afcdbb;
+}
+:root[data-theme='dark'] .notice {
+  background: #3d342e;
+  color: #e0c2a8;
+  border-color: #574537;
+}
+:root[data-theme='dark'] .workspace-footer p,
+:root[data-theme='dark'] .workspace-footer p b {
+  color: #a49aaf;
+}

@@ -1,8 +1,0 @@
-Atlas Agent is an autonomous AI assistant built with the smolagents 
-framework. It is designed to reason, choose the right tools, execute tasks, 
-and solve real-world problems instead of acting as a simple chatbot. The current 
-version includes tools for date and time, system information, weather, calculator, 
-file reading, file writing, web search, and Python code execution. Future versions 
-will add email automation, calendar management, GitHub integration, browser automation, 
-RAG, memory, and multi-agent capabilities while maintaining a clean,
- modular, and production-ready architecture.
