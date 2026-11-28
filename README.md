@@ -38,13 +38,5 @@ Attaching a text file does not silently create a workspace file. Without Groq, d
 - [Product roadmap and deferred work](docs/roadmap.md)
 - [Security and disclosure](SECURITY.md) · [Asset credits](docs/credits.md)
 
-```text
-backend/app/   api/v1 · agent · core · database · integrations · services · tools
-backend/tests/ unit, API, stream, persistence and opt-in provider checks
-frontend/src/  layouts · pages · components/ui · contexts · services · styles
-frontend/tests/ Playwright tests against a real FastAPI service
-```
-
-This milestone is a **single-process personal assistant**, not a multi-tenant SaaS. Production mode requires an owner gate. Use durable private storage, TLS and backups before hosting. The original alpha commit, license and historical media remain intact.
 
 *Think beyond chat. Build beyond automation.*
