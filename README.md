@@ -6,22 +6,6 @@ Atlas combines a React interface with a FastAPI service, a bounded LangGraph age
 
 ![Atlas chat window over a blurred lavender sky, with the Atlas orb logo, centered composer and three suggested prompts](docs/images/workspace.webp)
 
-## Try it
-
-With **Python 3.12+** and **Node 22**, from the repository root:
-
-```bash
-python -m venv .venv
-source .venv/bin/activate                 # Windows PowerShell: .\.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
-npm --prefix frontend ci
-npm --prefix frontend run build
-python -m uvicorn backend.app.main:app --host 127.0.0.1 --port 8000 --no-access-log
-```
-
-Open **http://127.0.0.1:8000**. Enter **`Calculate (48 + 12) * 3`** in the overview. Atlas will open a conversation, run the calculator, return **180** and save the exchange. No API key is needed for this path.
-
-For open-ended AI conversations, go to **Settings → Agent & model → Configure key**. Groq credentials are verified server-side before persistence. Environment keys are also supported; their presence alone is not a successful live verification.
 
 ## What is available
 
